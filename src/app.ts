@@ -5,6 +5,7 @@ import dotenv from "dotenv";
 import helmet from "helmet";
 import {routerV1} from "./routers";
 import {StatusCodes} from "http-status-codes";
+import {errorHandler} from "./utils/errorHandler";
 
 //app init
 dotenv.config();
@@ -18,13 +19,14 @@ app.use(helmet());
 
 //routers
 app.use("/api/v1", routerV1)
+
 //no found route
 app.use("/api/v1/*", (req, res)=>{
     res.status(StatusCodes.NOT_FOUND).json({message: "The provided endpoint is not found"})
 })
 
-//error handlers
-
+//error handler
+app.use(errorHandler)
 
 //start server
 app.listen(PORT, () => {
