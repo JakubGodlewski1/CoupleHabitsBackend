@@ -3,6 +3,8 @@ import express from "express";
 import morgan from "morgan"
 import dotenv from "dotenv";
 import helmet from "helmet";
+import {routerV1} from "./routers";
+import {StatusCodes} from "http-status-codes";
 
 //app init
 dotenv.config();
@@ -15,8 +17,11 @@ app.use(morgan("dev"));
 app.use(helmet());
 
 //routers
-
+app.use("/api/v1", routerV1)
 //no found route
+app.use("/api/v1/*", (req, res)=>{
+    res.status(StatusCodes.NOT_FOUND).json({message: "The provided endpoint is not found"})
+})
 
 //error handlers
 
