@@ -5,7 +5,7 @@ import dotenv from "dotenv";
 import helmet from "helmet";
 import {routerV1} from "./routers";
 import {StatusCodes} from "http-status-codes";
-import {errorHandler} from "./utils/errorHandler";
+import {errorHandler} from "./utils/errorHandler/errorHandler";
 
 //app init
 dotenv.config();
