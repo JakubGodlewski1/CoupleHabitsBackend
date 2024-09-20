@@ -71,10 +71,7 @@ build/
 pm2-logs/
 
 # Local development secrets (if applicable)
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
+.env*
 
 # npm version lock file
 package-lock.json
