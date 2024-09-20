@@ -1,14 +1,15 @@
 import "express-async-errors"
 import express from "express";
 import morgan from "morgan"
-import dotenv from "dotenv";
 import helmet from "helmet";
 import {routerV1} from "./routers";
 import {StatusCodes} from "http-status-codes";
-import {errorHandler} from "./utils/errorHandler/errorHandler";
+import {errorHandler} from "./lib/server/errorHandler/errorHandler";
+import {loadDotEnv} from "./lib/server/loadDotEnv";
+import {startServerAndConnectWithDB} from "./lib/server/startServerAndConnectWithDB";
 
 //app init
-dotenv.config();
+loadDotEnv()
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -28,7 +29,4 @@ app.use("/api/v1/*", (req, res)=>{
 //error handler
 app.use(errorHandler)
 
-//start server
-app.listen(PORT, () => {
-    console.log("Server running on port: " + PORT);
-})
+await startServerAndConnectWithDB(app, PORT)
