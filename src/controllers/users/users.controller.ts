@@ -16,7 +16,7 @@ export const getUser = async (req:Request, res: Response) => {
     }
 
     //Get the entire data that is needed at the frontend and return it
-    const payload = generateUserPayload(user)
+    const payload =await generateUserPayload(user)
 
     return res.status(200).json(payload)
 }

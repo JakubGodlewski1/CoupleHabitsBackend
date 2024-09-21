@@ -1,4 +1,4 @@
-import { randomStringGenerator } from "../../utils/randomStringGenerator";
+import { randomStringGenerator } from "../../utils/randomStringGenerator/randomStringGenerator";
 import { userDb } from "../../models/users/user.model";
 import mongoose from "mongoose";
 
