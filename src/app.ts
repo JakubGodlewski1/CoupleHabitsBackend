@@ -7,6 +7,7 @@ import {StatusCodes} from "http-status-codes";
 import {errorHandler} from "./lib/server/errorHandler/errorHandler";
 import {loadDotEnv} from "./lib/server/loadDotEnv";
 import {startServerAndConnectWithDB} from "./lib/server/startServerAndConnectWithDB";
+import {ClerkExpressRequireAuth} from "@clerk/clerk-sdk-node";
 
 //app init
 loadDotEnv()
@@ -19,7 +20,7 @@ app.use(morgan("dev"));
 app.use(helmet());
 
 //routers
-app.use("/api/v1", routerV1)
+app.use("/api/v1", ClerkExpressRequireAuth(), routerV1)
 
 //no found route
 app.use("/api/v1/*", (req, res)=>{
