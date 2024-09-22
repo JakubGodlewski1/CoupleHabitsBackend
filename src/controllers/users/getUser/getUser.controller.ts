@@ -1,6 +1,6 @@
 import {Request, Response} from "express";
-import {userDb} from "../../models/users/user.model";
-import {generateUserPayload} from "../../lib/users/generateUserPayload";
+import {userDb} from "../../../models/users/user.model";
+import {generateUserPayload} from "../../../lib/users/generateUserPayload";
 
 export const getUser = async (req:Request, res: Response) => {
     const {userId, email} = req.auth!

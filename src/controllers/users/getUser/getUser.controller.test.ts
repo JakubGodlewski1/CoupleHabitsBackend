@@ -1,12 +1,12 @@
 import {afterEach, describe} from "vitest";
-import {userDb} from "../../models/users/user.model";
+import {userDb} from "../../../models/users/user.model";
 import mongoose from "mongoose";
-import {UserDbSchema} from "../../../types/user";
-import {getUser} from "./users.controller";
+import {UserDbSchema} from "../../../../types/user";
+import {getUser} from "./getUser.controller";
 import {Request, Response} from "express";
 
-vi.mock("../../models/users/user.model")
-vi.mock("../../lib/users/generateUserPayload")
+vi.mock("../../../models/users/user.model")
+vi.mock("../../../lib/users/generateUserPayload")
 
 const exampleUser:UserDbSchema = {
     updatedAt: new Date(),
@@ -21,7 +21,7 @@ const exampleUser:UserDbSchema = {
 };
 
 describe("user controller", () => {
-    const req = {body:{authId: "123", email: "test@test.com"}} as Request;
+    const req = {auth:{userId: "123", email: "test@wp.pl"}} as Request;
     const res = {
         status: vi.fn((code:number)=>({
             json: vi.fn((payload:any)=>{})
