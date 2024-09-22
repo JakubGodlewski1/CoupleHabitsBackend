@@ -16,7 +16,7 @@ const exampleUser:UserDbSchema = {
     partnerId: new mongoose.Types.ObjectId(),
     connectionCode: "12345ABC",
     gameAccountId: null,
-    authId: "authProvider|unique123",
+    userId: "authProvider|unique123",
     email: "user@example.com"
 };
 

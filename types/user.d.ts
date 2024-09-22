@@ -9,11 +9,7 @@ type UserDbSchema = {
     partnerId: mongoose.Types.ObjectId | null,
     connectionCode: string,
     gameAccountId: mongoose.Types.ObjectId | null
-} & GetUser
-
-//content of body when user signs up or signs in
-type GetUser = {
-    authId: string,
+    userId: string,
     email:string
 }
 
