@@ -10,7 +10,7 @@ export const generateUserPayload = async (user: UserDbSchema):Promise<UserPayloa
         email: user.email,
         habits: [],
         partner: {
-            connected: false,
+            connected: !!user.partnerId,
             avatar: null
         },
         gameAccount: {

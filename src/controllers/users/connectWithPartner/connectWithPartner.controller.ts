@@ -12,11 +12,6 @@ export const connectWithPartnerController = async (req:Request, res:Response) =>
     const user = res.locals.user as UserDbSchema
     const {lastTimeCompleted} = req.body
 
-    console.log({
-        partner,
-        user
-    })
-
     //assign partners to each other and add game account id to the accounts
     await withTransaction(async (session)=>{
         //create gameAccount
