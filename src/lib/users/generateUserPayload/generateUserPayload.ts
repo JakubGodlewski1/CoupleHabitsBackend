@@ -1,4 +1,4 @@
-import {UserDbSchema, UserPayload} from "../../../types/user";
+import {UserDbSchema, UserPayload} from "../../../../types/user";
 
 export const generateUserPayload = async (user: UserDbSchema):Promise<UserPayload> => {
     //get all the necessary data that is needed for the user, like habits, game account details etc.

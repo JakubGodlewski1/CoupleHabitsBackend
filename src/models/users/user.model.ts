@@ -1,9 +1,9 @@
 import mongoose from "mongoose";
 import { UserDbSchema } from "../../../types/user";
-import { generateConnectionCode } from "../../lib/users/generateConnectionCode";
+import { generateConnectionCode } from "../../lib/users/generateConnectionCode/generateConnectionCode";
 
 const userSchema = new mongoose.Schema<UserDbSchema>({
-    authId: {
+    id: {
         type: String,
         required: false
     },
@@ -17,14 +17,13 @@ const userSchema = new mongoose.Schema<UserDbSchema>({
         required: false
     },
     partnerId: {
-        type: mongoose.Types.ObjectId,
+        type: String,
         ref: "User",
         required: false,
         default: null
     },
     connectionCode: {
-        type: String,
-        required: true
+        type: String
     },
     gameAccountId: {
         type: mongoose.Types.ObjectId,

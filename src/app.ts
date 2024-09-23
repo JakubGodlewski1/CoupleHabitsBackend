@@ -8,6 +8,7 @@ import {errorHandler} from "./lib/server/errorHandler/errorHandler";
 import {loadDotEnv} from "./lib/server/loadDotEnv";
 import {startServerAndConnectWithDB} from "./lib/server/startServerAndConnectWithDB";
 import {ClerkExpressRequireAuth} from "@clerk/clerk-sdk-node";
+import {handleUserExists} from "./middleware/users/handleUserExists/handleUserExists.middleware";
 
 //app init
 loadDotEnv()
@@ -20,7 +21,7 @@ app.use(morgan("dev"));
 app.use(helmet());
 
 //routers
-app.use("/api/v1", ClerkExpressRequireAuth(), routerV1)
+app.use("/api/v1", ClerkExpressRequireAuth(), handleUserExists,  routerV1)
 
 //no found route
 app.use("/api/v1/*", (req, res)=>{

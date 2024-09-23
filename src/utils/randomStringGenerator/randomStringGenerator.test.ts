@@ -1,7 +1,6 @@
 import { expect, test, describe } from 'vitest';
 import {randomStringGenerator} from "./randomStringGenerator";
 
-
 describe('randomStringGenerator', () => {
 
     // Test 1: Check if the generated string has the correct length

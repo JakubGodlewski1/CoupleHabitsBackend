@@ -4,12 +4,11 @@ import mongoose from "mongoose";
 type UserDbSchema = {
     updatedAt: Date;
     createdAt: Date
-    _id: mongoose.Types.ObjectId
     avatar: string,
-    partnerId: mongoose.Types.ObjectId | null,
+    partnerId: string | null,
     connectionCode: string,
     gameAccountId: mongoose.Types.ObjectId | null
-    userId: string,
+    id: string,
     email:string
 }
 
