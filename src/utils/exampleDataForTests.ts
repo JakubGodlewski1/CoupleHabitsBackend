@@ -43,10 +43,59 @@ const res = {
 
 const next = vi.fn() as NextFunction
 
+const exampleCreateHabitData = {
+    strike: 3,
+    frequency: {
+        type: "specific days",
+        specificDaysOption: {
+            monday: true,
+            tuesday: false,
+            wednesday: true,
+            thursday: false,
+            friday: true,
+            saturday: false,
+            sunday: false,
+        }
+    },
+    details: {
+        user: {
+            label: "Morning Workout",
+            completed: false,
+        },
+        partner: {
+            label: "Morning Run with Partner",
+            completed: true,
+        }
+    }
+};
+
+const exampleCreateHabitDataIncorrect = {
+    frequency: {
+        type: "specific days",
+        specificDaysOption: {
+            monday: true,
+            tuesday: false,
+            wednesday: true,
+            thursday: false,
+            friday: true,
+            saturday: false,
+            sunday: false,
+        }
+    },
+    details: {
+        partner: {
+            label: "Morning Run with Partner",
+            completed: true,
+        }
+    }
+};
+
 export const testData = {
     res,
     req,
     user,
     partner,
-    next
+    next,
+    exampleCreateHabitData,
+    exampleCreateHabitDataIncorrect
 }

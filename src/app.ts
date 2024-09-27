@@ -2,13 +2,11 @@ import "express-async-errors"
 import express from "express";
 import morgan from "morgan"
 import helmet from "helmet";
-import {routerV1} from "./routers";
+import {routerV1} from "./routers/v1";
 import {StatusCodes} from "http-status-codes";
 import {errorHandler} from "./lib/server/errorHandler/errorHandler";
 import {loadDotEnv} from "./lib/server/loadDotEnv";
 import {startServerAndConnectWithDB} from "./lib/server/startServerAndConnectWithDB";
-import {ClerkExpressRequireAuth} from "@clerk/clerk-sdk-node";
-import {handleUserExists} from "./middleware/users/handleUserExists/handleUserExists.middleware";
 
 //app init
 loadDotEnv()
@@ -21,10 +19,10 @@ app.use(morgan("dev"));
 app.use(helmet());
 
 //routers
-app.use("/api/v1", ClerkExpressRequireAuth(), handleUserExists,  routerV1)
+app.use("/api/v1", routerV1)
 
 //no found route
-app.use("/api/v1/*", (req, res)=>{
+app.use("*", (req, res)=>{
     res.status(StatusCodes.NOT_FOUND).json({message: "The provided endpoint is not found"})
 })
 
