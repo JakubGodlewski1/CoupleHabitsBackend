@@ -4,7 +4,7 @@ export class NotFoundError extends Error {
     statusCode = StatusCodes.NOT_FOUND
 }
 
-export class InternalErrorError extends Error {
+export class InternalError extends Error {
     statusCode = StatusCodes.INTERNAL_SERVER_ERROR
 }
 

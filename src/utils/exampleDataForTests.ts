@@ -63,7 +63,7 @@ const exampleCreateHabitData = {
             completed: false,
         },
         partner: {
-            label: "Morning Run with Partner",
+            label: "Morning Run with my love as a partner.",
             completed: true,
         }
     }

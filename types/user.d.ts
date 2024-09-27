@@ -1,10 +1,11 @@
 import mongoose from "mongoose";
+import {FrontendHabit} from "./habit";
 
 //mongo db user schema
 type UserDbSchema = {
     updatedAt: Date;
     createdAt: Date
-    avatar: string,
+    avatar: string | null,
     partnerId: string | null,
     connectionCode: string,
     gameAccountId: mongoose.Types.ObjectId | null
@@ -20,7 +21,7 @@ type UserPayload = {
     }
     connectionCode: string,
     email: string,
-    habits: [],
+    habits: FrontendHabit[],
     gameAccount: {
         strike: number,
         points: number
