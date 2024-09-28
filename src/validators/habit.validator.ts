@@ -1,4 +1,4 @@
-import {z} from 'zod';
+import {boolean, z} from 'zod';
 
 // Define Repeat type validator
 export const repeatValidator = z.enum(["daily", "weekly"]);
@@ -44,3 +44,7 @@ export const createHabitValidator = z.object({
         })
     })
 });
+
+export const toggleHabitValidator = z.object({
+    isCompleted: z.boolean(),
+})

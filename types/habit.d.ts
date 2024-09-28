@@ -1,5 +1,5 @@
 import {z} from "zod";
-import {createHabitValidator, frequencyValidator} from "../src/validators/habit.validator";
+import {createHabitValidator, frequencyValidator, toggleHabitValidator} from "../src/validators/habit.validator";
 import mongoose from "mongoose";
 
 
@@ -61,4 +61,4 @@ type FrontendHabit = {
     }
 }
 
-
+type ToggleHabit = z.infer<typeof toggleHabitValidator>
