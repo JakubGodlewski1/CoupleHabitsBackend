@@ -12,7 +12,7 @@ export const hasPartner = async (req:Request, res:Response, next:NextFunction) =
         throw new BadRequestError("You can't create a habit without a partner")
     }
 
-    const partner =await userDb.findOne({id: partnerId}) as unknown as UserDbSchema
+    const partner:(UserDbSchema | null) =await userDb.findOne({id: partnerId})
 
     if (!partner){
         throw new BadRequestError("The provided partner id does not match any user from our db")
