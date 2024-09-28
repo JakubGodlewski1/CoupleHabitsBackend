@@ -7,7 +7,6 @@ import {gameAccountDb} from "../../../models/gameAccounts/gameAccount.model";
 import mongoose from "mongoose";
 import {GameAccountDbSchema} from "../../../../types/gameAccount";
 import {InternalError} from "../../../errors/customErrors";
-import {number} from "zod";
 
 export const getPartnerAvatar = async (partnerId:string | null):Promise<null | string> => {
     if (!partnerId) return null

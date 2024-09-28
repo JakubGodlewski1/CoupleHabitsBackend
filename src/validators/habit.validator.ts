@@ -1,5 +1,4 @@
 import {z} from 'zod';
-import mongoose from "mongoose";
 
 // Define Repeat type validator
 export const repeatValidator = z.enum(["daily", "weekly"]);
@@ -36,17 +35,12 @@ export const createHabitValidator = z.object({
     frequency: frequencyValidator,
     details: z.object({
         user: z.object({
-            label: z.string().min(2, "Label is too short.").max(30, "Label is too long. max 30 characters"),
+            label: z.string().min(2, "Label is too short.").max(50, "Label is too long. max 50 characters"),
             completed: z.boolean().default(false),
         }),
         partner: z.object({
-            label: z.string().min(2, "Label is too short.").max(30, "Label is too long. max 30 characters"),
+            label: z.string().min(2, "Label is too short.").max(50, "Label is too long. max 50 characters"),
             completed: z.boolean().default(false),
         })
     })
 });
-
-export const updateHabitValidator = createHabitValidator.extend({
-    id: z.custom((val)=> mongoose.Types.ObjectId.isValid(val))
-})
-

@@ -2,7 +2,6 @@ import {beforeEach, describe, expect} from "vitest";
 import {generateUserPayload} from "./generateUserPayload";
 import {UserDbSchema} from "../../../../types/user";
 import mongoose from "mongoose";
-import {gameAccountDb} from "../../../models/gameAccounts/gameAccount.model";
 import {getGameAccount, getHabits, getPartnerAvatar} from "./helpers";
 import {FrontendHabit} from "../../../../types/habit";
 

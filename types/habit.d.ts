@@ -2,7 +2,9 @@ import {z} from "zod";
 import {createHabitValidator, frequencyValidator} from "../src/validators/habit.validator";
 import mongoose from "mongoose";
 
+
 type CreateHabit = z.infer<typeof createHabitValidator>
+type UpdateHabit = CreateHabit
 
 type Frequency = z.infer<typeof frequencyValidator>
 type HabitDbSchema = {
@@ -44,12 +46,11 @@ type HabitDbSchemaCreate = {
     lastTimeCompleted?: string | null
 }
 
-
 type FrontendHabit = {
     strike: number,
     frequency: Frequency
     details: {
-        mine:{
+        user:{
             label: string,
             completed:boolean
         },
@@ -59,4 +60,5 @@ type FrontendHabit = {
         }
     }
 }
+
 
