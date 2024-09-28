@@ -1,6 +1,6 @@
-import {beforeEach, describe, expect} from "vitest";
+import {describe, expect} from "vitest";
 import {validateCreateHabitBody} from "./createHabit.middleware";
-import {testData} from "../../utils/exampleDataForTests";
+import {testData} from "../../../utils/exampleDataForTests";
 import {Request} from "express";
 
 describe("validateCreateHabitBody", ()=>{

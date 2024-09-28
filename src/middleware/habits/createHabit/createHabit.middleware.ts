@@ -1,6 +1,7 @@
 import {NextFunction, Request, Response} from "express";
-import {BadRequestError} from "../../errors/customErrors";
-import {createHabitValidator} from "../../validators/habit.validator";
+import {BadRequestError} from "../../../errors/customErrors";
+import {createHabitValidator} from "../../../validators/habit.validator";
+import * as console from "node:console";
 
 export const validateCreateHabitBody = (req:Request, res:Response, next: NextFunction) => {
     const createHabitData = req.body
@@ -13,6 +14,7 @@ export const validateCreateHabitBody = (req:Request, res:Response, next: NextFun
     //validate habit
     const result = createHabitValidator.safeParse(createHabitData)
     if (!result.success){
+        console.error(result.error.flatten())
        throw new BadRequestError("The provided habit is invalid")
     }
 
