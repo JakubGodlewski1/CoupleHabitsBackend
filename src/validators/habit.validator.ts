@@ -44,3 +44,7 @@ export const createHabitValidator = z.object({
         })
     })
 });
+
+export const toggleHabitValidator = z.object({
+    isCompleted: z.boolean(),
+})
