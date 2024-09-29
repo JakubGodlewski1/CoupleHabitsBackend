@@ -13,4 +13,4 @@ export const habitsRouter = Router();
 habitsRouter.post("/", validateCreateHabitBody, createHabit)
 habitsRouter.delete("/:id", validateHabitId, deleteHabit)
 habitsRouter.patch("/:id", validateHabitId, validateUpdateHabitBody, updateHabit)
-habitsRouter.patch("/toggle/:id", validateHabitId, validateToggleHabitBody, toggleHabit)
+habitsRouter.patch("/:id/toggle", validateHabitId, validateToggleHabitBody, toggleHabit)
