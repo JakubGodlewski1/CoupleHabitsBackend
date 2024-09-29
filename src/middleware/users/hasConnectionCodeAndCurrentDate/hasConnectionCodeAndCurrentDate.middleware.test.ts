@@ -1,31 +1,27 @@
 import {beforeEach, describe, expect, it} from "vitest";
-import {Request, Response} from "express";
+import {NextFunction, Request, Response} from "express";
 import {hasConnectionCodeAndCurrentDate} from "./hasConnectionCodeAndCurrentDate.middleware";
-import {testData} from "../../../utils/exampleDataForTests";
 
 describe("hasConnectionCodeAndCurrentDate", () => {
-    const {next, user, partner, } = testData
+    const user = {
+        connectionCode: "123456"
+    }
 
-        const res = {
-            locals:{
-                user
-            }
-        }
-
-        const req = {
+        let req = {
             body:{
                 lastTimeCompleted:"Mon Sep 23 2024 18:44:13 GMT+0100 (British Summer Time)",
-                connectionCode: partner.connectionCode
+                connectionCode: "654321"
             }
-        }
+        } as Request
+        let res = {locals:{user}} as Response
+        const next = vi.fn() as NextFunction;
+
 
         beforeEach(()=>{
-            res.locals = {
-                    user
-                }
+
                 req.body= {
                     lastTimeCompleted:"Mon Sep 23 2024 18:44:13 GMT+0100 (British Summer Time)",
-                    connectionCode: partner.connectionCode
+                    connectionCode: "654321"
                 }
         })
 

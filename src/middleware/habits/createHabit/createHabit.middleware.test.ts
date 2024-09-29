@@ -1,20 +1,57 @@
 import {describe, expect} from "vitest";
 import {validateCreateHabitBody} from "./createHabit.middleware";
-import {testData} from "../../../utils/exampleDataForTests";
-import {Request} from "express";
+import {Request, Response} from "express";
 
 describe("validateCreateHabitBody", ()=>{
-    const
-        {
-            res,
-            next,
-            exampleCreateHabitData,
-            exampleCreateHabitDataIncorrect
-        } = testData
+    const exampleCreateHabitData = {
+        strike: 3,
+        frequency: {
+            type: "specific days",
+            specificDaysOption: {
+                monday: true,
+                tuesday: false,
+                wednesday: true,
+                thursday: false,
+                friday: true,
+                saturday: false,
+                sunday: false,
+            }
+        },
+        details: {
+            user: {
+                label: "Morning Workout",
+                completed: false,
+            },
+            partner: {
+                label: "drink coffee as partner",
+                completed: true,
+            }
+        }
+    };
+    const exampleCreateHabitDataIncorrect = {
+        frequency: {
+            type: "specific days",
+            specificDaysOption: {
+                monday: true,
+                tuesday: false,
+                wednesday: true,
+                thursday: false,
+                friday: true,
+                saturday: false,
+                sunday: false,
+            }
+        },
+        details: {
+            partner: {
+                label: "Morning Run with Partner",
+                completed: true,
+            }
+        }
+    };
 
-    const req = {
-        body: undefined
-    } as Request
+    const req = {} as Request
+    const res = {} as Response
+    const next = vi.fn()
 
     it('should throw an error if a habit is missing something', () => {
         req.body = exampleCreateHabitDataIncorrect

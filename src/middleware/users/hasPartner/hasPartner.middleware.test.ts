@@ -1,23 +1,17 @@
 import {describe, expect} from "vitest";
-import {testData} from "../../../utils/exampleDataForTests";
 import {hasPartner} from "./hasPartner.middleware";
 import {userDb} from "../../../models/users/user.model";
+import {NextFunction, Request, Response} from "express";
+import {UserDbSchema} from "../../../../types/user";
 
 vi.mock("../../../models/users/user.model");
 
 describe("hasPartner middleware", () => {
-    let req: any;
-    let res: any;
-    let next: any;
-    let user: any;
+    const user = {partnerId:"654321"} as UserDbSchema
 
-    beforeEach(() => {
-        req = { ...testData.req };
-        res = { ...testData.res };
-        next = testData.next;
-        user = { ...testData.user };
-        res.locals = { user };
-    });
+    const req = {} as Request
+    const res = {locals:{user}} as Response
+    const next = vi.fn() as NextFunction
 
     it('should throw an error if user does not have a partner', async () => {
         res.locals.user.partnerId = null;

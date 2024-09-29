@@ -2,7 +2,6 @@ import {describe} from "vitest";
 import {userDb} from "../../../models/users/user.model";
 import {randomStringGenerator} from "../../../utils/randomStringGenerator/randomStringGenerator";
 import {generateConnectionCode} from "./generateConnectionCode";
-import {testData} from "../../../utils/exampleDataForTests";
 
 vi.mock("../../../models/users/user.model")
 vi.mock("../../../utils/randomStringGenerator/randomStringGenerator")

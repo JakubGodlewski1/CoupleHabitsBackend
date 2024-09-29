@@ -2,20 +2,20 @@ import {beforeEach, describe, expect} from "vitest";
 import {NextFunction, Request, Response} from "express";
 import {validateHabitId} from "./validateHabitId.middleware";
 import {habitDb} from "../../../models/habits/habit.model";
-import {testData} from "../../../utils/exampleDataForTests";
 import {HabitDbSchema} from "../../../../types/habit";
 
 vi.mock("../../../models/habits/habit.model")
 
 describe("validateHabitIdMiddleware", () => {
+    const user = {id:"123456"}
+
     let req = {params:{}} as Request
-    let res = {locals:{user: testData.user}} as Response
+    let res = {locals:{user}} as Response
     let next = vi.fn() as NextFunction;
 
     beforeEach(()=>{
         req = {params:{}} as Request
-        res =  {locals:{user: testData.user}} as Response
-        next = vi.fn() as NextFunction;
+        res =  {locals:{user}} as Response
     })
 
     it('should throw an error if habit id is not in params', () => {
@@ -43,7 +43,7 @@ describe("validateHabitIdMiddleware", () => {
     it('should call next if the given habit belongs to user', async () => {
         req.params.id = "507f1f77bcf86cd799439011" //habit id
         vi.mocked(habitDb.findById).mockResolvedValueOnce({details:[{userId:"CLRK123456"},{userId:"CLRK654321"}]} as Partial<HabitDbSchema>)
-        res.locals.user = {...testData.user, id: "CLRK123456"}
+        res.locals.user = {id: "CLRK123456"} as any
         await validateHabitId(req, res, next)
         expect(next).toHaveBeenCalled()
     });
