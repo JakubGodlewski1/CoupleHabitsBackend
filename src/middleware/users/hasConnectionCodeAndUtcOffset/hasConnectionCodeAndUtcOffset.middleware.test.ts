@@ -1,27 +1,25 @@
 import {beforeEach, describe, expect, it} from "vitest";
 import {NextFunction, Request, Response} from "express";
-import {hasConnectionCodeAndCurrentDate} from "./hasConnectionCodeAndCurrentDate.middleware";
+import {hasConnectionCodeAndUtcOffset} from "./hasConnectionCodeAndUtcOffset.middleware";
 
-describe("hasConnectionCodeAndCurrentDate", () => {
+describe("hasConnectionCodeAndUtcOffset", () => {
     const user = {
         connectionCode: "123456"
     }
 
         let req = {
             body:{
-                lastTimeCompleted:"Mon Sep 23 2024 18:44:13 GMT+0100 (British Summer Time)",
-                connectionCode: "654321"
+                connectionCode: "654321",
+                utcOffset: 10
             }
         } as Request
         let res = {locals:{user}} as Response
         const next = vi.fn() as NextFunction;
 
-
         beforeEach(()=>{
-
                 req.body= {
-                    lastTimeCompleted:"Mon Sep 23 2024 18:44:13 GMT+0100 (British Summer Time)",
-                    connectionCode: "654321"
+                    connectionCode: "654321",
+                    utcOffset: 10
                 }
         })
 
@@ -31,7 +29,7 @@ describe("hasConnectionCodeAndCurrentDate", () => {
         req.body.connectionCode = undefined as any
 
         // Invoke the middleware and expect it to throw an error
-        expect(() => hasConnectionCodeAndCurrentDate(req as Request, res as Response, next))
+        expect(() => hasConnectionCodeAndUtcOffset(req as Request, res as Response, next))
             .toThrowError("Connection code is missing");
     });
 
@@ -39,7 +37,7 @@ describe("hasConnectionCodeAndCurrentDate", () => {
         req.body.connectionCode= "ABC" // Less than 6 characters
 
         // Invoke the middleware and expect it to throw an error
-        expect(() => hasConnectionCodeAndCurrentDate(req as Request, res as Response, next))
+        expect(() => hasConnectionCodeAndUtcOffset(req as Request, res as Response, next))
             .toThrowError("Connection code should be 6 characters long");
     });
 
@@ -47,12 +45,12 @@ describe("hasConnectionCodeAndCurrentDate", () => {
         req.body.connectionCode = "ABC$12" // Invalid character '$'
 
         // Invoke the middleware and expect it to throw an error
-        expect(() => hasConnectionCodeAndCurrentDate(req as Request, res as Response, next))
+        expect(() => hasConnectionCodeAndUtcOffset(req as Request, res as Response, next))
             .toThrowError("Connection code contains invalid characters");
     });
 
     it("should call next if a valid connection code is provided", () => {
-        hasConnectionCodeAndCurrentDate(req as Request, res as Response, next);
+        hasConnectionCodeAndUtcOffset(req as Request, res as Response, next);
 
         // Expect next to have been called (no error)
         expect(next).toHaveBeenCalled();
@@ -61,20 +59,20 @@ describe("hasConnectionCodeAndCurrentDate", () => {
     it('should throw error if user passes their own code', () => {
         req.body.connectionCode = user.connectionCode
 
-        expect(() => hasConnectionCodeAndCurrentDate(req as Request, res as Response, next)).toThrowError(/your own connection code/)
+        expect(() => hasConnectionCodeAndUtcOffset(req as Request, res as Response, next)).toThrowError(/your own connection code/)
     });
 
-    /*lastTimeCompleted*/
-    it('should throw error if last time completed has not been passed', () => {
-        req.body.lastTimeCompleted = undefined as any
-        expect(() => hasConnectionCodeAndCurrentDate(req as Request, res as Response, next)).toThrowError(/lastTimeCompleted is missing/i)
+    it('should throw error if no utc offset is provided', () => {
+        req.body= {
+            connectionCode: "654321"
+        }
+        expect(() => hasConnectionCodeAndUtcOffset(req as Request, res as Response, next)).toThrowError(/utc offset is missing/i)
     });
 
-    it('should throw error if connection code is not a date in string format', () => {
-       req.body.lastTimeCompleted = "1234"
-        expect(()=>hasConnectionCodeAndCurrentDate(req as Request, res as Response, next)).toThrowError(/is not a valid date/)
+    it('should throw error if utc offset is outside of range (-12 to 14)', () => {
+        req.body= {connectionCode: "654321", utcOffset: 15}
+        expect(() => hasConnectionCodeAndUtcOffset(req as Request, res as Response, next)).toThrowError(/UTC offset has to be between -12 and 14/i)
+        req.body= {connectionCode: "654321", utcOffset: -13}
+        expect(() => hasConnectionCodeAndUtcOffset(req as Request, res as Response, next)).toThrowError(/UTC offset has to be between -12 and 14/i)
     });
 })
-
-
-

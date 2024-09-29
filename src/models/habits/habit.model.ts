@@ -10,10 +10,6 @@ const DetailSchema = new Schema({
 }, { _id: false });
 
 const HabitSchema= new Schema<HabitDbSchema>({
-    lastTimeCompleted: {
-        type: String,
-        default:null
-    },
     frequency: {
         type: Schema.Types.Mixed,
         required: true,

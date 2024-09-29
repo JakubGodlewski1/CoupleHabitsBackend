@@ -19,7 +19,6 @@ describe("getLocalStrikeIncrement", () => {
         },
         _id: new mongoose.Types.ObjectId(),
         strike:0,
-        lastTimeCompleted:null,
         details:[
             {userId:"123", completed: true, label:"test1"},
             {userId:"321", completed: true, label:"test2"}

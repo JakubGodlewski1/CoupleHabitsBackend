@@ -1,11 +1,17 @@
 import {z} from "zod";
-import {createHabitValidator, frequencyValidator, toggleHabitValidator} from "../src/validators/habit.validator";
+import {
+    createHabitValidator,
+    frequencyValidator,
+    specificDaysValidator,
+    toggleHabitValidator
+} from "../src/validators/habit.validator";
 import mongoose from "mongoose";
 
 
 type CreateHabit = z.infer<typeof createHabitValidator>
 type UpdateHabit = CreateHabit
 
+type SpecificDays = z.infer<typeof specificDaysValidator>
 type Frequency = z.infer<typeof frequencyValidator>
 type HabitDbSchema = {
     _id: mongoose.Types.ObjectId;
@@ -25,7 +31,6 @@ type HabitDbSchema = {
         }
     ],
     strike: number,
-    lastTimeCompleted: string | null
 }
 
 type HabitDbSchemaCreate = {
@@ -43,7 +48,6 @@ type HabitDbSchemaCreate = {
         }
     ],
     strike?: number,
-    lastTimeCompleted?: string | null
 }
 
 type FrontendHabit = {

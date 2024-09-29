@@ -1,10 +1,9 @@
 import {NextFunction, Request, Response} from "express";
 import {BadRequestError} from "../../../errors/customErrors";
-import {isValidDate} from "../../../utils/isValidDate/isValidDate";
 
-export const hasConnectionCodeAndCurrentDate = (req:Request, res:Response, next:NextFunction) => {
+export const hasConnectionCodeAndUtcOffset = (req:Request, res:Response, next:NextFunction) => {
     //get connection code and last time completed date (current date)
-    const {connectionCode, lastTimeCompleted} = req.body
+    const {connectionCode, utcOffset} = req.body
     const {connectionCode:currentUserConnectionCode} = res.locals.user
 
 /* validate connection code*/
@@ -31,19 +30,14 @@ export const hasConnectionCodeAndCurrentDate = (req:Request, res:Response, next:
 
     }
 
-/*validate lastTimeCompleted*/
-
-    //validate if lastTimeCompleted is passed
-    if(!lastTimeCompleted) {
-        throw new BadRequestError("lastTimeCompleted is missing")
+    //validate utcOffset
+    if(!utcOffset){
+        throw new BadRequestError("Utc offset is missing")
+    }
+        if(utcOffset > 14 || utcOffset < -12){
+        throw new BadRequestError("UTC offset has to be between -12 and 14")
     }
 
-    //check if the date is correct
-
-    if (!isValidDate(lastTimeCompleted)){
-        console.log(req.body.lastTimeCompleted)
-        throw new BadRequestError("lastTimeCompleted is not a valid date")
-    }
 
     next()
 }

@@ -2,10 +2,15 @@ import mongoose, {Schema} from "mongoose";
 import {GameAccountDbSchema} from "../../../types/gameAccount";
 
 const GameAccountSchema: Schema = new Schema<GameAccountDbSchema>({
-    lastTimeCompleted: {
-        type: String,
+    utcOffset: {
         required: true,
+        type: Number,
+        validate:{
+            validator: (offset=> offset>=-12 && offset<=14),
+            message:"UTC offset has to be between -12 and 14"
+        }
     },
+
     strike: {
         type: Number,
         required: true,
