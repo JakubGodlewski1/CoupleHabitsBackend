@@ -5,10 +5,11 @@ import {hasPartner} from "../../middleware/users/hasPartner/hasPartner.middlewar
 import {ClerkExpressRequireAuth} from "@clerk/clerk-sdk-node";
 import {handleUserExists} from "../../middleware/users/handleUserExists/handleUserExists.middleware";
 import {cleanUpRouter} from "./testCleanUp/testCleanUp.router";
+import {setMockDateForTests} from "../../middleware/habits/setMockDateForTests";
 
 export const routerV1 = Router()
 
-routerV1.use(ClerkExpressRequireAuth(), handleUserExists)
+routerV1.use(ClerkExpressRequireAuth(), setMockDateForTests, handleUserExists)
 
 routerV1.use("/users", userRouter)
 routerV1.use("/habits", hasPartner, habitsRouter)
