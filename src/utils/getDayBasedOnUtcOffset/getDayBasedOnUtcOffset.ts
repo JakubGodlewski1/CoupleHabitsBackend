@@ -7,7 +7,7 @@ export const getDayBasedOnUtcOffset = (utcOffset: number): number => {
         }
 
         const today = MOCK_DATE || new Date()
-        console.log(today)
+
         return addHours(today, utcOffset).getUTCDay()
 };
 
