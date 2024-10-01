@@ -11,6 +11,6 @@ export const manageGlobalStrike =  {
     decrementStrikeAndPoints: async (gameAccountId: mongoose.Types.ObjectId)=>{
         const gameAccount:(GameAccountDbSchema | null) = await gameAccountDb.findById(gameAccountId)
         const pointsToDecrement = -gameAccount!.strike*10
-        await gameAccountDb.findByIdAndUpdate(gameAccountId, {$inc: {strike: 1, points:pointsToDecrement}})
+        await gameAccountDb.findByIdAndUpdate(gameAccountId, {$inc: {strike: -1, points:pointsToDecrement}})
     }
 }

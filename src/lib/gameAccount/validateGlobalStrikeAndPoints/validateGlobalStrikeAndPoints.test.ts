@@ -5,6 +5,7 @@ import {gameAccountDb} from "../../../models/gameAccounts/gameAccount.model";
 import {validateGlobalStrikeAndPoints} from "./validateGlobalStrikeAndPoints";
 import {UserDbSchema} from "../../../../types/user";
 import {testData} from "../../../utils/testData";
+import {HabitDbSchema} from "../../../../types/habit";
 
 vi.mock("../manageGlobalStrike/manageGlobalStrike")
 vi.mock("../../../models/habits/habit.model")
@@ -17,6 +18,10 @@ describe("validateGlobalStrikeAndPoints tests", () => {
         specificDaysFriAndSun:{specificDaysFriAndSunUncompletedByPartner, specificDaysFriAndSunCompleted, specificDaysFriAndSunUncompletedByUser},
         specificDaysSaturday:{specificDaysSaturdayCompleted, specificDaysSaturdayUncompletedByUser}
     }} = testData
+
+    const dailyHabit = {frequency: {type:"repeat", repeatOption: "daily"}} as HabitDbSchema
+    const weeklyHabit = {frequency: {type:"repeat", repeatOption: "weekly"}} as HabitDbSchema
+    vi.mocked(gameAccountDb.findById).mockResolvedValue({utcOffset: 0})
 
     const user = {
         id:"123"
@@ -56,7 +61,7 @@ describe("validateGlobalStrikeAndPoints tests", () => {
 
         mockSaturday()
 
-        await validateGlobalStrikeAndPoints(user, true)
+        await validateGlobalStrikeAndPoints(user, true, dailyHabit)
         expect(manageGlobalStrike.incrementStrikeAndPoints).toHaveBeenCalled()
     });
 
@@ -74,7 +79,7 @@ describe("validateGlobalStrikeAndPoints tests", () => {
 
         mockSunday()
 
-        await validateGlobalStrikeAndPoints(user, true)
+        await validateGlobalStrikeAndPoints(user, true, dailyHabit)
         expect(manageGlobalStrike.incrementStrikeAndPoints).toHaveBeenCalled()
     });
 
@@ -90,7 +95,7 @@ describe("validateGlobalStrikeAndPoints tests", () => {
 
         mockSunday()
 
-        await validateGlobalStrikeAndPoints(user, true)
+        await validateGlobalStrikeAndPoints(user, true, dailyHabit)
         expect(manageGlobalStrike.incrementStrikeAndPoints).not.toHaveBeenCalled()
     });
     
@@ -104,7 +109,7 @@ describe("validateGlobalStrikeAndPoints tests", () => {
 
          mockSaturday()
 
-         await validateGlobalStrikeAndPoints(user, true)
+         await validateGlobalStrikeAndPoints(user, true, dailyHabit)
          expect(manageGlobalStrike.incrementStrikeAndPoints).not.toHaveBeenCalled()
     });
      
@@ -123,7 +128,7 @@ describe("validateGlobalStrikeAndPoints tests", () => {
 
          mockSaturday()
 
-         await validateGlobalStrikeAndPoints(user, false)
+         await validateGlobalStrikeAndPoints(user, false, dailyHabit)
          expect(manageGlobalStrike.incrementStrikeAndPoints).not.toHaveBeenCalled()
          expect(manageGlobalStrike.decrementStrikeAndPoints).toHaveBeenCalled()
     });
@@ -141,7 +146,7 @@ describe("validateGlobalStrikeAndPoints tests", () => {
 
          mockSaturday()
 
-         await validateGlobalStrikeAndPoints(user, false)
+         await validateGlobalStrikeAndPoints(user, false, dailyHabit)
          expect(manageGlobalStrike.incrementStrikeAndPoints).not.toHaveBeenCalled()
          expect(manageGlobalStrike.decrementStrikeAndPoints).toHaveBeenCalled()
     });
@@ -159,7 +164,7 @@ describe("validateGlobalStrikeAndPoints tests", () => {
 
           mockSunday()
 
-          await validateGlobalStrikeAndPoints(user, false)
+          await validateGlobalStrikeAndPoints(user, false, dailyHabit)
           expect(manageGlobalStrike.incrementStrikeAndPoints).not.toHaveBeenCalled()
           expect(manageGlobalStrike.decrementStrikeAndPoints).toHaveBeenCalled()
     });
@@ -177,7 +182,7 @@ describe("validateGlobalStrikeAndPoints tests", () => {
 
            mockSaturday()
 
-           await validateGlobalStrikeAndPoints(user, false)
+           await validateGlobalStrikeAndPoints(user, false, dailyHabit)
            expect(manageGlobalStrike.incrementStrikeAndPoints).not.toHaveBeenCalled()
            expect(manageGlobalStrike.decrementStrikeAndPoints).not.toHaveBeenCalled()
     });
@@ -197,7 +202,7 @@ describe("validateGlobalStrikeAndPoints tests", () => {
 
            mockSaturday()
 
-           await validateGlobalStrikeAndPoints(user, false)
+           await validateGlobalStrikeAndPoints(user, false, dailyHabit)
            expect(manageGlobalStrike.incrementStrikeAndPoints).not.toHaveBeenCalled()
            expect(manageGlobalStrike.decrementStrikeAndPoints).not.toHaveBeenCalled()
        })
@@ -213,8 +218,91 @@ describe("validateGlobalStrikeAndPoints tests", () => {
 
             mockSaturday()
 
-            await validateGlobalStrikeAndPoints(user, false)
+            await validateGlobalStrikeAndPoints(user, false, dailyHabit)
             expect(manageGlobalStrike.incrementStrikeAndPoints).not.toHaveBeenCalled()
             expect(manageGlobalStrike.decrementStrikeAndPoints).not.toHaveBeenCalled()
     });
+
+    it(`should not call increment function if:
+     - current habit is weekly,
+     - today is saturday
+     - there is daily completed habit
+     - there is weekly completed habit,
+     - hasCompleted is set to true
+      `, async () => {
+        vi.mocked(habitDb.find).mockResolvedValueOnce(
+            [
+                dailyCompleted,
+                weeklyCompleted
+            ])
+
+        mockSaturday()
+
+        await validateGlobalStrikeAndPoints(user, true, weeklyHabit)
+        expect(manageGlobalStrike.incrementStrikeAndPoints).not.toHaveBeenCalled()
+        expect(manageGlobalStrike.decrementStrikeAndPoints).not.toHaveBeenCalled()
+    });
+
+     it(`should  call increment function if:
+     - current habit is weekly,
+     - today is sunday
+     - there is daily completed habit
+     - there is weekly completed habit,
+     - hasCompleted is set to true
+      `, async () => {
+        vi.mocked(habitDb.find).mockResolvedValueOnce(
+            [
+                dailyCompleted,
+                weeklyCompleted
+            ])
+
+        mockSunday()
+
+        await validateGlobalStrikeAndPoints(user, true, weeklyHabit)
+        expect(manageGlobalStrike.incrementStrikeAndPoints).toHaveBeenCalled()
+        expect(manageGlobalStrike.decrementStrikeAndPoints).not.toHaveBeenCalled()
+    });
+
+      it(`should not call decrement function if:
+     - current habit is weekly,
+     - today is saturday
+     - there is daily completed habit
+     - there is weekly uncompleted habit by user,
+     - hasCompleted is set to false
+      `, async () => {
+        vi.mocked(habitDb.find).mockResolvedValueOnce(
+            [
+                dailyCompleted,
+                weeklyUncompletedByUser
+            ])
+
+        mockSaturday()
+
+        await validateGlobalStrikeAndPoints(user, false, weeklyHabit)
+        expect(manageGlobalStrike.incrementStrikeAndPoints).not.toHaveBeenCalled()
+        expect(manageGlobalStrike.decrementStrikeAndPoints).not.toHaveBeenCalled()
+    });
+
+          it(`should call decrement function if:
+     - current habit is weekly,
+     - today is sunday
+     - there is daily completed habit
+     - there is weekly uncompleted habit by user,
+     - hasCompleted is set to false
+      `, async () => {
+        vi.mocked(habitDb.find).mockResolvedValueOnce(
+            [
+                dailyCompleted,
+                weeklyUncompletedByUser
+            ])
+
+        mockSunday()
+
+        await validateGlobalStrikeAndPoints(user, false, weeklyHabit)
+        expect(manageGlobalStrike.incrementStrikeAndPoints).not.toHaveBeenCalled()
+        expect(manageGlobalStrike.decrementStrikeAndPoints).toHaveBeenCalled()
+    });
+
+
+
 })

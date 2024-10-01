@@ -5,10 +5,19 @@ import {habitFilters} from "../../../utils/habitFilters/habitFilters";
 import {GameAccountDbSchema} from "../../../../types/gameAccount";
 import {manageGlobalStrike} from "../manageGlobalStrike/manageGlobalStrike";
 import {getDayBasedOnUtcOffset} from "../../../utils/getDayBasedOnUtcOffset/getDayBasedOnUtcOffset";
+import {HabitDbSchema} from "../../../../types/habit";
+import _ from "lodash"
 
-export const validateGlobalStrikeAndPoints = async (user: UserDbSchema, hasCompleted: boolean) => {
-    const allHabits = await habitDb.find({"details.userId": user.id})
+export const validateGlobalStrikeAndPoints = async (user: UserDbSchema, hasCompleted: boolean, {frequency}:HabitDbSchema) => {
     const gameAccount:(GameAccountDbSchema | null) = await gameAccountDb.findById(user.gameAccountId)
+
+    //if today is not sunday and toggled habit is of type "weekly", return
+    if(
+        getDayBasedOnUtcOffset(gameAccount!.utcOffset) !== 0 &&
+        _.isEqual(frequency, {type:"repeat", repeatOption:"weekly"})
+    ) return
+
+    const allHabits = await habitDb.find({"details.userId": user.id})
 
     //get all habits that are scheduled for today
     const habitsScheduledForToday = habitFilters.scheduledForToday(allHabits, getDayBasedOnUtcOffset(gameAccount!.utcOffset))

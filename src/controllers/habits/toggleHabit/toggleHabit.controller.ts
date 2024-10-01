@@ -1,5 +1,5 @@
 import {Request, Response} from "express";
-import {ToggleHabit} from "../../../../types/habit";
+import {HabitDbSchema, ToggleHabit} from "../../../../types/habit";
 import {habitDb} from "../../../models/habits/habit.model";
 import {StatusCodes} from "http-status-codes";
 import {getLocalStrikeIncrement} from "../helpers/getLocalStrikeIncrement/getLocalStrikeIncrement";
@@ -15,16 +15,15 @@ export const toggleHabit = async (req:Request, res:Response)=>{
 
     const strikeIncrement = await getLocalStrikeIncrement(id, user, isCompleted)
 
-    await habitDb.updateOne(
+    const habit:(HabitDbSchema | null) = await habitDb.findOneAndUpdate(
         { _id: id, 'details.userId': user.id },
         {
             $set: { 'details.$.completed': isCompleted },
             $inc: { strike: strikeIncrement }
-        }
-    );
+        })
 
-    if(strikeIncrement!==0){
-        await validateGlobalStrikeAndPoints(user, isCompleted)
+    if(strikeIncrement!==0 && habit){
+        await validateGlobalStrikeAndPoints(user, isCompleted, habit)
     }
 
     res.status(StatusCodes.OK).json({message:"habit toggled"})
