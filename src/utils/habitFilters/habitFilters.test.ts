@@ -50,14 +50,14 @@ describe("HabitFilters", () => {
             specificDaysSaturdayUncompletedByUser, specificDaysSaturdayUncompletedByPartner,
         ];
 
-        const habitsScheduledForToday = habitFilters.scheduledForToday(habits, today)
+        const habitsScheduledForToday = habitFilters.scheduledFor(today, habits)
         expect(habitsScheduledForToday.length).toBe(expected)
     })
 
     it('should return habits that are scheduled for today if saturday', () => {
         //2 habits in the array below are scheduled for saturday
         const habits = [weeklyUncompleted, dailyCompleted, specificDaysFriAndSunCompleted, specificDaysSaturdayCompleted]
-        const habitsScheduledForToday = habitFilters.scheduledForToday(habits, 6)
+        const habitsScheduledForToday = habitFilters.scheduledFor(6, habits)
         expect(habitsScheduledForToday.length).toBe(2)
     });
 
@@ -65,7 +65,7 @@ describe("HabitFilters", () => {
         //3 habits in the array below are scheduled for sunday
         const habits = [weeklyUncompleted, dailyCompleted, specificDaysFriAndSunCompleted, specificDaysSaturdayCompleted]
 
-        const habitsScheduledForToday = habitFilters.scheduledForToday(habits, 0)
+        const habitsScheduledForToday = habitFilters.scheduledFor(0, habits)
         expect(habitsScheduledForToday.length).toBe(3)
     });
 
@@ -76,6 +76,8 @@ describe("HabitFilters", () => {
 
 
     it('ALL COMPLETED - should return true if all habits are completed and false if not', () => {
+
+        expect(habitFilters.validators.areAllCompleted([])).toBe(true)
         expect(habitFilters.validators.areAllCompleted(allCompleted)).toBe(true)
         expect(habitFilters.validators.areAllCompleted(uncompleted)).toBe(false)
         expect(habitFilters.validators.areAllCompleted(almostCompletedButUser)).toBe(false)
@@ -84,6 +86,7 @@ describe("HabitFilters", () => {
 
 
     it('ALL COMPLETED BUT ONE USER TASK', () => {
+        expect(habitFilters.validators.areAllCompletedButOneUserTask([], "123")).toBe(false)
         expect(habitFilters.validators.areAllCompletedButOneUserTask(allCompleted, "123")).toBe(false)
         expect(habitFilters.validators.areAllCompletedButOneUserTask(uncompleted, "123")).toBe(false)
         expect(habitFilters.validators.areAllCompletedButOneUserTask(almostCompletedButPartner, "123")).toBe(false)

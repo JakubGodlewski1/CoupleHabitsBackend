@@ -13,14 +13,14 @@ export const validateGlobalStrikeAndPoints = async (user: UserDbSchema, hasCompl
 
     //if today is not sunday and toggled habit is of type "weekly", return
     if(
-        getDayBasedOnUtcOffset(gameAccount!.utcOffset) !== 0 &&
+        getDayBasedOnUtcOffset(gameAccount!.utcOffset).day !== 0 &&
         _.isEqual(frequency, {type:"repeat", repeatOption:"weekly"})
     ) return
 
     const allHabits = await habitDb.find({"details.userId": user.id})
 
     //get all habits that are scheduled for today
-    const habitsScheduledForToday = habitFilters.scheduledForToday(allHabits, getDayBasedOnUtcOffset(gameAccount!.utcOffset))
+    const habitsScheduledForToday = habitFilters.scheduledFor(getDayBasedOnUtcOffset(gameAccount!.utcOffset).day, allHabits)
 
     if (habitsScheduledForToday.length === 0){
         return

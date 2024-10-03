@@ -3,8 +3,8 @@ import {getDayBasedOnUtcOffset} from "./getDayBasedOnUtcOffset";
 
 describe("getDayBasedOnUtcOffset", () => {
     it('should throw an error if utc offset is outside of range', () => {
-       expect(()=>getDayBasedOnUtcOffset(15)).toThrowError("outside of range");
-       expect(()=>getDayBasedOnUtcOffset(-13)).toThrowError("outside of range");
+       expect(()=>getDayBasedOnUtcOffset(15).day).toThrowError("outside of range");
+       expect(()=>getDayBasedOnUtcOffset(-13).day).toThrowError("outside of range");
     });
 
     it.each([
@@ -20,7 +20,7 @@ describe("getDayBasedOnUtcOffset", () => {
 
     ])("Should return $dayResult based on current utc and utc offset", ({mockDate, offset, dayResult})=>{
         vi.setSystemTime(mockDate)
-        const currentDay = getDayBasedOnUtcOffset(offset);
+        const currentDay = getDayBasedOnUtcOffset(offset).day;
         expect(currentDay).toBe(dayResult);
     })
 })

@@ -98,7 +98,7 @@ const specificDaysFriAndSunCompleted = {
 const specificDaysFriAndSunUncompleted = {
     ...base,
     frequency:frequencySpecificDaysFridaySunday,
-    details:detailsCompleted
+    details:detailsUncompleted
 }  as HabitDbSchema
 
 

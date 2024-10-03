@@ -11,17 +11,17 @@ const daysOfTheWeek: { [key: number]: keyof SpecificDays } = {
 }
 
 export const habitFilters = {
-    scheduledForToday: (habits:HabitDbSchema[], today: number)=> habits.filter(h=>{
+    scheduledFor: (day: number, habits:HabitDbSchema[])=> habits.filter(h=>{
         //daily
         if (h.frequency.type==="repeat" && h.frequency.repeatOption ==="daily"){
             return true
         }
         //weekly
-        if (h.frequency.type==="repeat" && h.frequency.repeatOption ==="weekly" && today === 0){
+        if (h.frequency.type==="repeat" && h.frequency.repeatOption ==="weekly" && day === 0){
             return true
         }
         //specific days
-        return h.frequency.type === "specific days" && h.frequency.specificDaysOption[daysOfTheWeek[today]];
+        return h.frequency.type === "specific days" && h.frequency.specificDaysOption[daysOfTheWeek[day]];
     }),
 
 
