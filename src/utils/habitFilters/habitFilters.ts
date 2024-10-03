@@ -1,4 +1,4 @@
-import {HabitDbSchema, SpecificDays} from "../../../types/habit";
+import {HabitDbSchema, HabitDbSchemaCreate, SpecificDays} from "../../../types/habit";
 
 const daysOfTheWeek: { [key: number]: keyof SpecificDays } = {
     0: "sunday",
@@ -11,7 +11,7 @@ const daysOfTheWeek: { [key: number]: keyof SpecificDays } = {
 }
 
 export const habitFilters = {
-    scheduledFor: (day: number, habits:HabitDbSchema[])=> habits.filter(h=>{
+    scheduledFor: (day: number, habits:HabitDbSchema[] | HabitDbSchemaCreate[])=> habits.filter(h=>{
         //daily
         if (h.frequency.type==="repeat" && h.frequency.repeatOption ==="daily"){
             return true
@@ -26,9 +26,9 @@ export const habitFilters = {
 
 
     validators: {
-        areAllCompleted: (habits: HabitDbSchema[])=> habits.every(h=>h.details.every(d=>d.completed)),
+        areAllCompleted: (habits: HabitDbSchema[] | HabitDbSchemaCreate[])=> habits.every(h=>h.details.every(d=>d.completed)),
 
-        areAllCompletedButOneUserTask: (habits:HabitDbSchema[], userId: string)=> {
+        areAllCompletedButOneUserTask: (habits:HabitDbSchema[] | HabitDbSchemaCreate[], userId: string)=> {
             //make sure that only one habit is not completed
             const uncompleted = habits.filter(h=>h.details.some(d=>!d.completed));
             if (uncompleted.length !==1){
