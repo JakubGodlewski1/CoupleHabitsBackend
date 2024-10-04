@@ -3,9 +3,15 @@ import {withTransaction} from "../../../lib/mongo/withTransaction";
 import {userDb} from "../../../models/users/user.model";
 import {gameAccountDb} from "../../../models/gameAccounts/gameAccount.model";
 import {habitDb} from "../../../models/habits/habit.model";
+import {StatusCodes} from "http-status-codes";
 
 export const cleanUpRouter =  Router();
+
 cleanUpRouter.get("/",  async (req:Request, res:Response)=>{
+    if (process.env.NODE_ENV === "production") {
+        return res.status(StatusCodes.FORBIDDEN).json({message:"action forbidden"})
+    }
+
     /*delete game account, habits, user account and partner account*/
 
     const user = res.locals.user
