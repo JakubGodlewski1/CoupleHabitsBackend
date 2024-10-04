@@ -7,5 +7,6 @@ type GameAccountDbSchema = {
     updatedAt: Date;
     strike: number;
     points: number,
+    dayOffPrice: number
 }
 

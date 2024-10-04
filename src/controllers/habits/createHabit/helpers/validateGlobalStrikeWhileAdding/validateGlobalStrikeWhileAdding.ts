@@ -1,4 +1,4 @@
-import {HabitDbSchemaCreate} from "../../../../../../types/habit";
+import {HabitDbSchema, HabitDbSchemaCreate} from "../../../../../../types/habit";
 import {habitDb} from "../../../../../models/habits/habit.model";
 import {habitFilters} from "../../../../../utils/habitFilters/habitFilters";
 import {gameAccountDb} from "../../../../../models/gameAccounts/gameAccount.model";
@@ -17,7 +17,7 @@ export const validateGlobalStrikeWhileAdding = async (habit:HabitDbSchemaCreate,
 
     //validate that current habit is scheduled for today
     const today = getDayBasedOnUtcOffset(gameAccount.utcOffset).day
-    const isScheduledForToday = scheduledFor(today, [habit]).length !== 0
+    const isScheduledForToday = scheduledFor(today, [habit as HabitDbSchema]).length !== 0
     if (!isScheduledForToday) {
         return
     }

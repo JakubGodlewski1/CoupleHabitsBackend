@@ -26,7 +26,7 @@ export const getHabits = async (userId:string, partnerId:string) => {
     return habits.map((habit:HabitDbSchema)=>habitConverter.fromDbHabitSchemaToFrontendHabit({habit, userId}))
 }
 
-export const getGameAccount = async (gameAccountId:mongoose.Types.ObjectId):Promise<{points:number, strike:number}> => {
+export const getGameAccount = async (gameAccountId:mongoose.Types.ObjectId):Promise<{points:number, strike:number, dayOffPrice: number}> => {
     const gameAccount = await gameAccountDb.findOne({_id:gameAccountId}) as GameAccountDbSchema | null
         if (!gameAccount) {
             throw new InternalError("We could not find your game account")
@@ -34,6 +34,7 @@ export const getGameAccount = async (gameAccountId:mongoose.Types.ObjectId):Prom
 
         return {
             points:gameAccount.points,
-            strike:gameAccount.strike
+            strike:gameAccount.strike,
+            dayOffPrice: gameAccount.dayOffPrice
         }
 }

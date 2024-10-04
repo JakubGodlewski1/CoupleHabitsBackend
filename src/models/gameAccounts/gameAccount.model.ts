@@ -26,6 +26,15 @@ const GameAccountSchema: Schema = new Schema<GameAccountDbSchema>({
         validate:{
             validator: (val: number) => val >= 0
         }
+    },
+    dayOffPrice: {
+        type: Number,
+        required: true,
+        default: 100,
+        validate:{
+            validator: (val: number) => val >= 0
+        }
+
     }
 }, {timestamps: true});
 
