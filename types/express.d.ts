@@ -7,7 +7,9 @@ declare global {
         export interface Request {
             auth?: {
                 userId: string,
-                email: string,
+                sessionClaims:{
+                    email: string,
+                }
             };
         }
 

@@ -18,7 +18,6 @@ export const generateUserPayload = async (user: UserDbSchema):Promise<UserPayloa
         gameAccount = await getGameAccount(user.gameAccountId)
     }
 
-
     return {
         avatar: user.avatar,
         email: user.email,

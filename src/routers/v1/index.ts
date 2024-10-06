@@ -2,16 +2,16 @@ import Router from "express"
 import {userRouter} from "./users/user.router";
 import {habitsRouter} from "./habits/habits.router";
 import {hasPartner} from "../../middleware/users/hasPartner/hasPartner.middleware";
-import {ClerkExpressRequireAuth} from "@clerk/clerk-sdk-node";
 import {handleUserExists} from "../../middleware/users/handleUserExists/handleUserExists.middleware";
 import {cleanUpRouter} from "./testCleanUp/testCleanUp.router";
 import {setMockDateForTests} from "../../middleware/habits/setMockDateForTests";
 import {nightReset} from "../../controllers/nightReset/nightReset.controller";
 import {dayOffRouter} from "./dayOff/dayOff.router";
+import {validateClerkToken} from "../../middleware/users/validateClerkToken";
 
 export const routerV1 = Router()
 
-routerV1.use(ClerkExpressRequireAuth(), setMockDateForTests, handleUserExists)
+routerV1.use(validateClerkToken(), setMockDateForTests, handleUserExists)
 
 routerV1.use("/users", userRouter)
 routerV1.use("/habits", hasPartner, habitsRouter)

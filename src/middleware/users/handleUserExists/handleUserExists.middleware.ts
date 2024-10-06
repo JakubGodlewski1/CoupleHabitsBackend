@@ -5,7 +5,7 @@ import {userDb} from "../../../models/users/user.model";
 
 export const handleUserExists = async (req:Request, res:Response, next:NextFunction) => {
     //get user id from clerk auth
-    const {userId, email} = req.auth!
+    const {userId, sessionClaims:{email}} = req.auth!
 
     //check if user exists
     let user = await userDb.findOne({id:userId})

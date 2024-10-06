@@ -13,12 +13,12 @@ export const validateDayOff = async (req:Request, res:Response, next:NextFunctio
 
     //game account exists
     if (!gameAccount) {
-        throw new Error("We could not find your game account, contact support")
+        throw new Error("We could not find your game account. Please contact our support team at help@couplehabits.com")
     }
 
     //validate that user have enough points to take day off
     if (gameAccount.dayOffPrice>gameAccount.points){
-        throw new BadRequestError("You don't have enough points to take day off")
+        throw new BadRequestError("You don't have enough points to take a day off")
     }
 
     //validate that user has not completed all tasks scheduled for today

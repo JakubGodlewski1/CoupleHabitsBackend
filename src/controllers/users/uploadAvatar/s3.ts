@@ -63,7 +63,7 @@ const uploadImage = async (req:Request, user:UserDbSchema) => {
     }catch (err){
         const deleteImg = await deleteCommand(fileName)
         await s3.send(deleteImg)
-        throw new Error("Something went wrong while uploading image, try again later")
+        throw new Error("Something went wrong while uploading the image, try again later")
     }
 }
 

@@ -21,14 +21,14 @@ export const validateHabitId = async (req:Request, res:Response, next:NextFuncti
     //check if the habit exists
     const habit:(HabitDbSchema | null) = await habitDb.findById(habitId)
     if(!habit){
-        throw new Error("A habit with given id does not exist")
+        throw new Error("The habit with given id does not exist")
     }
 
     //check if the habit belongs to the signed up user
     if (!habit.details.some((userData)=> {
         return userData.userId === user.id
     })){
-        throw new Error("Not authorized")
+        throw new Error("You are not authorized to perform the action")
     }
 
     next()

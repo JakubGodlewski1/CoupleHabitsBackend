@@ -5,7 +5,7 @@ import { generateConnectionCode } from "../../lib/users/generateConnectionCode/g
 const userSchema = new mongoose.Schema<UserDbSchema>({
     id: {
         type: String,
-        required: false
+        required: true
     },
     avatar: {
         type: String,
@@ -14,7 +14,7 @@ const userSchema = new mongoose.Schema<UserDbSchema>({
     },
     email: {
         type: String,
-        required: false
+        required: true
     },
     partnerId: {
         type: String,

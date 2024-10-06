@@ -1,4 +1,4 @@
-import {boolean, z} from 'zod';
+import {z} from 'zod';
 
 // Define Repeat type validator
 export const repeatValidator = z.enum(["daily", "weekly"]);

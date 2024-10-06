@@ -18,7 +18,7 @@ describe("handleUserExists", () => {
         email: "user@example.com"
     } as UserDbSchema
 
-    let req = {auth:{userId:"123"}}as Request
+    let req = {auth:{userId:"123", sessionClaims: {email:"email"}}}as Request
     let res = {locals:{user}} as Response
     const next = vi.fn()
 
