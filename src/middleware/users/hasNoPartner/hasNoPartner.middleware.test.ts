@@ -1,7 +1,7 @@
 import {describe, expect} from "vitest";
 import {Request, Response} from "express";
-import {hasNoPartner} from "./hasNoPartner.middleware";
-import {UserDbSchema} from "../../../../types/user";
+import {hasNoPartner} from "./hasNoPartner.middleware.js";
+import {UserDbSchema} from "../../../../types/user.js";
 
 describe("hasNoPartner middleware", () => {
     const user = {partnerId: "654321"} as UserDbSchema

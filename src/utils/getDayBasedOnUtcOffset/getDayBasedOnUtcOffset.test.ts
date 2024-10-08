@@ -1,5 +1,5 @@
 import {describe, expect} from "vitest";
-import {getDayBasedOnUtcOffset} from "./getDayBasedOnUtcOffset";
+import {getDayBasedOnUtcOffset} from "./getDayBasedOnUtcOffset.js";
 
 describe("getDayBasedOnUtcOffset", () => {
     it('should throw an error if utc offset is outside of range', () => {

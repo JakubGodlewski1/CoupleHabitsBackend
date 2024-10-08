@@ -78,3 +78,6 @@ package-lock.json
 
 # Yarn version lock file
 yarn.lock
+
+#docker
+*.tar

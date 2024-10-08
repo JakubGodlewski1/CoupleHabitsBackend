@@ -4,12 +4,12 @@ import {
     frequencyValidator,
     specificDaysValidator,
     toggleHabitValidator
-} from "../src/validators/habit.validator";
+} from "../src/validators/habit.validator.js";
 import mongoose from "mongoose";
 
 
-type CreateHabit = z.infer<typeof createHabitValidator>
-type UpdateHabit = CreateHabit
+export type CreateHabit = z.infer<typeof createHabitValidator>
+export type UpdateHabit = CreateHabit
 
 type SpecificDays = z.infer<typeof specificDaysValidator>
 type Frequency = z.infer<typeof frequencyValidator>

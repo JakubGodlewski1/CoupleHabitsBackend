@@ -1,9 +1,9 @@
-import {habitDb} from "../../../models/habits/habit.model";
+import {habitDb} from "../../../models/habits/habit.model.js";
 import {Request, Response} from "express";
 import {StatusCodes} from "http-status-codes";
 import {
     validateGlobalStrikeWhileRemoving
-} from "./helpers/validateGlobalStrikeWhileDeleting/validateGlobalStrikeWhileDeleting";
+} from "./helpers/validateGlobalStrikeWhileDeleting/validateGlobalStrikeWhileDeleting.js";
 import mongoose from "mongoose";
 
 export const deleteHabit = async (req:Request,res:Response) => {

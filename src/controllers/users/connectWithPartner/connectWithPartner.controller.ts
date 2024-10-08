@@ -1,9 +1,9 @@
 import {Request, Response} from "express";
-import {gameAccountDb} from "../../../models/gameAccounts/gameAccount.model";
-import {withTransaction} from "../../../lib/mongo/withTransaction";
-import {userDb} from "../../../models/users/user.model";
-import {UserDbSchema} from "../../../../types/user";
-import {GameAccountDbSchema} from "../../../../types/gameAccount";
+import {gameAccountDb} from "../../../models/gameAccounts/gameAccount.model.js";
+import {withTransaction} from "../../../lib/mongo/withTransaction.js";
+import {userDb} from "../../../models/users/user.model.js";
+import {UserDbSchema} from "../../../../types/user.js"
+import {GameAccountDbSchema} from "../../../../types/gameAccount.js";
 
 export const connectWithPartnerController = async (req:Request, res:Response) => {
     const utcOffset = req.body.utcOffset

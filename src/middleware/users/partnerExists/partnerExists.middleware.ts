@@ -1,6 +1,6 @@
 import {NextFunction, Request, Response} from "express";
-import {userDb} from "../../../models/users/user.model";
-import {BadRequestError} from "../../../errors/customErrors";
+import {userDb} from "../../../models/users/user.model.js";
+import {BadRequestError} from "../../../errors/customErrors.js";
 
 export const partnerExists = async (req:Request, res:Response, next:NextFunction) => {
     const {connectionCode} = req.body

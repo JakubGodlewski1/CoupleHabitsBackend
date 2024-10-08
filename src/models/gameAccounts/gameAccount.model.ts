@@ -1,5 +1,5 @@
 import mongoose, {Schema} from "mongoose";
-import {GameAccountDbSchema} from "../../../types/gameAccount";
+import {GameAccountDbSchema} from "../../../types/gameAccount.js";
 
 const GameAccountSchema: Schema = new Schema<GameAccountDbSchema>({
     utcOffset: {

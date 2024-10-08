@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import {FrontendHabit} from "./habit";
+import type {FrontendHabit} from "./habit.d.ts";
 
 //mongo db user schema
 type UserDbSchema = {

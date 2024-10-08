@@ -2,11 +2,11 @@ import "express-async-errors"
 import express from "express";
 import morgan from "morgan"
 import helmet from "helmet";
-import {routerV1} from "./routers/v1";
 import {StatusCodes} from "http-status-codes";
-import {errorHandler} from "./lib/server/errorHandler/errorHandler";
-import {loadDotEnv} from "./lib/server/loadDotEnv";
-import {startServerAndConnectWithDB} from "./lib/server/startServerAndConnectWithDB";
+import {errorHandler} from "./lib/server/errorHandler/errorHandler.js";
+import {loadDotEnv} from "./lib/server/loadDotEnv.js";
+import {startServerAndConnectWithDB} from "./lib/server/startServerAndConnectWithDB.js";
+import {routerV1} from "./routers/v1/index.js";
 
 //app init
 loadDotEnv()

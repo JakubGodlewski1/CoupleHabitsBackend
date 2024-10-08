@@ -1,7 +1,5 @@
-/*Check if user exists, if not, create an account*/
-
 import {NextFunction, Request, Response} from "express";
-import {userDb} from "../../../models/users/user.model";
+import {userDb} from "../../../models/users/user.model.js";
 
 export const handleUserExists = async (req:Request, res:Response, next:NextFunction) => {
     //get user id from clerk auth

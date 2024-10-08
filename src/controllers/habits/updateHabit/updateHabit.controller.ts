@@ -1,7 +1,7 @@
 import {Request, Response} from "express";
-import {habitDb} from "../../../models/habits/habit.model";
+import {habitDb} from "../../../models/habits/habit.model.js";
 import {StatusCodes} from "http-status-codes";
-import {habitConverter} from "../../../lib/habits/habitConverter";
+import {habitConverter} from "../../../lib/habits/habitConverter.js";
 
 export const updateHabit = async (req:Request, res:Response) =>{
     const updatedHabitData = req.body;

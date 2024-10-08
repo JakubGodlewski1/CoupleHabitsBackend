@@ -1,5 +1,5 @@
 import { expect, test, describe } from 'vitest';
-import {randomStringGenerator} from "./randomStringGenerator";
+import {randomStringGenerator} from "./randomStringGenerator.js";
 
 describe('randomStringGenerator', () => {
 

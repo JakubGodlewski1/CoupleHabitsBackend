@@ -1,9 +1,10 @@
 import {beforeEach, describe, expect} from "vitest";
-import {generateUserPayload} from "./generateUserPayload";
-import {UserDbSchema} from "../../../../types/user";
+import {generateUserPayload} from "./generateUserPayload.js";
+import {UserDbSchema} from "../../../../types/user.js";
 import mongoose from "mongoose";
-import {getGameAccount, getHabits, getPartnerAvatar} from "./helpers";
-import {FrontendHabit} from "../../../../types/habit";
+import {getGameAccount, getHabits, getPartnerAvatar} from "./helpers.js";
+import {FrontendHabit} from "../../../../types/habit.js";
+import {GameAccountDbSchema} from "../../../../types/gameAccount.js";
 
 vi.mock("./helpers")
 
@@ -58,7 +59,7 @@ describe("generateUserPayload", () => {
     it('should return values from helper functions if both user.partnerId and user.gameAccountId exist', async () => {
         const avatarUrl = "http://exampleAvatarUrl.com/123"
         const habits = [{id:"1"}, {id:"2"}] as unknown as FrontendHabit[]
-        const gameAccount = {points:2, strike:1}
+        const gameAccount = {points:2, strike:1} as GameAccountDbSchema
 
         vi.mocked(getPartnerAvatar).mockResolvedValue(avatarUrl)
         vi.mocked(getHabits).mockResolvedValue(habits)

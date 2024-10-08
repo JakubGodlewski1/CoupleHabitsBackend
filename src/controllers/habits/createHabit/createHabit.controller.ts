@@ -1,11 +1,12 @@
 import {Request, Response} from "express";
-import {CreateHabit} from "../../../../types/habit";
-import {habitDb} from "../../../models/habits/habit.model";
-import {habitConverter} from "../../../lib/habits/habitConverter";
+import {CreateHabit} from "../../../../types/habit.js";
+import {habitDb} from "../../../models/habits/habit.model.js";
+import {habitConverter} from "../../../lib/habits/habitConverter.js";
 import {StatusCodes} from "http-status-codes";
 import {
     validateGlobalStrikeWhileAdding
-} from "./helpers/validateGlobalStrikeWhileAdding/validateGlobalStrikeWhileAdding";
+} from "./helpers/validateGlobalStrikeWhileAdding/validateGlobalStrikeWhileAdding.js";
+
 
 export const createHabit = async (req:Request, res:Response) => {
     const newHabitData = req.body as CreateHabit

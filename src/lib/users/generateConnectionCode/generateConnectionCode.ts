@@ -1,6 +1,6 @@
-import { randomStringGenerator } from "../../../utils/randomStringGenerator/randomStringGenerator";
-import { userDb } from "../../../models/users/user.model";
-import {UserDbSchema} from "../../../../types/user";
+import { randomStringGenerator } from "../../../utils/randomStringGenerator/randomStringGenerator.js";
+import { userDb } from "../../../models/users/user.model.js";
+import {UserDbSchema} from "../../../../types/user.js";
 
 // Assuming your user model has a connectionCode field, we can add appropriate types
 export const generateConnectionCode = async (): Promise<string> => {

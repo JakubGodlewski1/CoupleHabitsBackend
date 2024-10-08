@@ -1,15 +1,16 @@
 import {Request, Response} from "express";
-import {getDayBasedOnUtcOffset} from "../../utils/getDayBasedOnUtcOffset/getDayBasedOnUtcOffset";
-import {NightResetAccount} from "../../../types/nightValidation";
-import {gameAccountDb} from "../../models/gameAccounts/gameAccount.model";
-import {GameAccountDbSchema} from "../../../types/gameAccount";
-import {habitDb} from "../../models/habits/habit.model";
-import {HabitDbSchema} from "../../../types/habit";
-import {userDb} from "../../models/users/user.model";
-import {habitFilters} from "../../utils/habitFilters/habitFilters";
-import {withTransaction} from "../../lib/mongo/withTransaction";
+import {getDayBasedOnUtcOffset} from "../../utils/getDayBasedOnUtcOffset/getDayBasedOnUtcOffset.js";
+import {NightResetAccount} from "../../../types/nightValidation.js";
+import {gameAccountDb} from "../../models/gameAccounts/gameAccount.model.js";
+import {GameAccountDbSchema} from "../../../types/gameAccount.js";
+import {habitDb} from "../../models/habits/habit.model.js";
+import {HabitDbSchema} from "../../../types/habit.js";
+import {userDb} from "../../models/users/user.model.js";
+import {habitFilters} from "../../utils/habitFilters/habitFilters.js";
+import {withTransaction} from "../../lib/mongo/withTransaction.js";
 import {StatusCodes} from "http-status-codes";
-import {getUniqueUsers} from "./helpers/helpers";
+import {getUniqueUsers} from "./helpers/helpers.js";
+import {UserDbSchema} from "../../../types/user.js";
 
 export const nightReset = async (req:Request, res:Response) => {
     //calculate utc offset/s of people who currently have midnight
@@ -20,7 +21,7 @@ export const nightReset = async (req:Request, res:Response) => {
     const gameAccountIds = gameAccounts.map(g=>g._id)
 
     //fetch all users who have the given game account
-    const users = await userDb.find({gameAccountId:{$in:gameAccountIds}})
+    const users:UserDbSchema[] = await userDb.find({gameAccountId:{$in:gameAccountIds}})
 
     //remove duplicate accounts (2 people have the same game account)
     const uniqueUsers = getUniqueUsers(users)
@@ -55,7 +56,7 @@ export const nightReset = async (req:Request, res:Response) => {
         if (!areAllCompleted) {
             //get ids of all habits that should be reset
             const undoneHabitIds = habitsScheduledForYesterday
-                .filter(h=> !h.details.every(d=>d.completed))
+                .filter(h=> !h.details.every((d:any)=>d.completed))
                 .map(h=>h._id)
 
             await withTransaction(async (session)=>{

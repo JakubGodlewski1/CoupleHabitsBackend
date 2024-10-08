@@ -1,12 +1,12 @@
 import {Router} from 'express';
-import {createHabit} from "../../../controllers/habits/createHabit/createHabit.controller";
-import {validateCreateHabitBody} from "../../../middleware/habits/createHabit/createHabit.middleware";
-import {deleteHabit} from "../../../controllers/habits/deleteHabit/deleteHabit.controller";
-import {validateHabitId} from "../../../middleware/habits/validateHabitId/validateHabitId.middleware";
-import {updateHabit} from "../../../controllers/habits/updateHabit/updateHabit.controller";
-import {validateUpdateHabitBody} from "../../../middleware/habits/updateHabit/updateHabit.middleware";
-import {validateToggleHabitBody} from "../../../middleware/habits/toggleHabit/toggleHabit.middleware";
-import {toggleHabit} from "../../../controllers/habits/toggleHabit/toggleHabit.controller";
+import {createHabit} from "../../../controllers/habits/createHabit/createHabit.controller.js";
+import {validateCreateHabitBody} from "../../../middleware/habits/createHabit/createHabit.middleware.js";
+import {deleteHabit} from "../../../controllers/habits/deleteHabit/deleteHabit.controller.js";
+import {validateHabitId} from "../../../middleware/habits/validateHabitId/validateHabitId.middleware.js";
+import {updateHabit} from "../../../controllers/habits/updateHabit/updateHabit.controller.js";
+import {validateUpdateHabitBody} from "../../../middleware/habits/updateHabit/updateHabit.middleware.js";
+import {validateToggleHabitBody} from "../../../middleware/habits/toggleHabit/toggleHabit.middleware.js";
+import {toggleHabit} from "../../../controllers/habits/toggleHabit/toggleHabit.controller.js";
 
 export const habitsRouter = Router();
 

@@ -1,8 +1,8 @@
 import {beforeEach, describe} from "vitest";
-import {userDb} from "../../../models/users/user.model";
-import {handleUserExists} from "./handleUserExists.middleware";
+import {userDb} from "../../../models/users/user.model.js";
+import {handleUserExists} from "./handleUserExists.middleware.js";
 import {Request, Response} from "express";
-import {UserDbSchema} from "../../../../types/user";
+import {UserDbSchema} from "../../../../types/user.js";
 
 vi.mock("../../../models/users/user.model")
 

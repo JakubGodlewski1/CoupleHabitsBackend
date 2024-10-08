@@ -1,4 +1,4 @@
-import {loadDotEnv} from "../lib/server/loadDotEnv";
+import {loadDotEnv} from "../lib/server/loadDotEnv.js";
 
 loadDotEnv()
 

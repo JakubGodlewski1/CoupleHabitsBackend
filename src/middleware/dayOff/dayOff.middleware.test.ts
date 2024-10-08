@@ -1,9 +1,9 @@
 import {describe, it} from "vitest";
 import {Request, Response} from "express";
-import {gameAccountDb} from "../../models/gameAccounts/gameAccount.model";
-import {habitDb} from "../../models/habits/habit.model";
-import {validateDayOff} from "./dayOff.middleware";
-import {testData} from "../../utils/testData";
+import {gameAccountDb} from "../../models/gameAccounts/gameAccount.model.js";
+import {habitDb} from "../../models/habits/habit.model.js";
+import {validateDayOff} from "./dayOff.middleware.js";
+import {testData} from "../../utils/testData.js";
 
 vi.mock("../../models/gameAccounts/gameAccount.model")
 vi.mock("../../models/habits/habit.model")

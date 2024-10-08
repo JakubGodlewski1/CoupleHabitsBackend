@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
-import {BadRequestError} from "../../../errors/customErrors";
+import {BadRequestError} from "../../../errors/customErrors.js";
 
 export const validateAvatarFile = (req: Request, res: Response, next: NextFunction) => {
     const file = req.file;

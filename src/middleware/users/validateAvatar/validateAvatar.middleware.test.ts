@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it } from "vitest";
 import { NextFunction, Request, Response } from "express";
-import { validateAvatarFile } from "./validateAvatar.middleware";
+import { validateAvatarFile } from "./validateAvatar.middleware.js";
 
 describe("validateAvatar middleware", () => {
     let req: Request;

@@ -1,8 +1,8 @@
 import {Request, Response, Router} from "express";
-import {withTransaction} from "../../../lib/mongo/withTransaction";
-import {userDb} from "../../../models/users/user.model";
-import {gameAccountDb} from "../../../models/gameAccounts/gameAccount.model";
-import {habitDb} from "../../../models/habits/habit.model";
+import {withTransaction} from "../../../lib/mongo/withTransaction.js";
+import {userDb} from "../../../models/users/user.model.js";
+import {gameAccountDb} from "../../../models/gameAccounts/gameAccount.model.js";
+import {habitDb} from "../../../models/habits/habit.model.js";
 import {StatusCodes} from "http-status-codes";
 
 export const cleanUpRouter =  Router();
@@ -18,13 +18,13 @@ cleanUpRouter.get("/",  async (req:Request, res:Response)=>{
 
     await withTransaction( async (session)=>{
         //delete game account
-        await gameAccountDb.findByIdAndDelete(user.gameAccountId)
+        await gameAccountDb.findByIdAndDelete(user.gameAccountId, {session})
 
         //delete all habits related to the user
-        await habitDb.deleteMany({"details.userId":user.id})
+        await habitDb.deleteMany({"details.userId":user.id}, {session})
 
         //delete partner and user
-        await userDb.deleteMany({ id: { $in: [user.id, user.partnerId]}});
+        await userDb.deleteMany({ id: { $in: [user.id, user.partnerId]}}, {session});
     })
 
     res.status(200).send({message:"success"})

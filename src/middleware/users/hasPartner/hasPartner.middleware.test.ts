@@ -1,8 +1,8 @@
 import {describe, expect} from "vitest";
-import {hasPartner} from "./hasPartner.middleware";
-import {userDb} from "../../../models/users/user.model";
+import {hasPartner} from "./hasPartner.middleware.js";
+import {userDb} from "../../../models/users/user.model.js";
 import {NextFunction, Request, Response} from "express";
-import {UserDbSchema} from "../../../../types/user";
+import {UserDbSchema} from "../../../../types/user.js";
 
 vi.mock("../../../models/users/user.model");
 

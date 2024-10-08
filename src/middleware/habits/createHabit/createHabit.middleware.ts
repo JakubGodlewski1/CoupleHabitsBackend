@@ -1,6 +1,6 @@
 import {NextFunction, Request, Response} from "express";
-import {BadRequestError} from "../../../errors/customErrors";
-import {createHabitValidator} from "../../../validators/habit.validator";
+import {BadRequestError} from "../../../errors/customErrors.js";
+import {createHabitValidator} from "../../../validators/habit.validator.js";
 import * as console from "node:console";
 
 export const validateCreateHabitBody = (req:Request, res:Response, next: NextFunction) => {

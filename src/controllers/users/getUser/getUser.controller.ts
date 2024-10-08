@@ -1,6 +1,5 @@
 import {Request, Response} from "express";
-import {userDb} from "../../../models/users/user.model";
-import {generateUserPayload} from "../../../lib/users/generateUserPayload/generateUserPayload";
+import {generateUserPayload} from "../../../lib/users/generateUserPayload/generateUserPayload.js";
 
 export const getUser = async (req:Request, res: Response) => {
     const {user} = res.locals

@@ -1,5 +1,5 @@
 import {NextFunction, Request, Response} from "express";
-import {BadRequestError} from "../../../errors/customErrors";
+import {BadRequestError} from "../../../errors/customErrors.js";
 
 export const hasNoPartner = (req:Request, res:Response, next:NextFunction) => {
     //get User id

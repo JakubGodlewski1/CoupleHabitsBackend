@@ -1,7 +1,6 @@
 import {describe, expect} from "vitest";
-import {HabitDbSchema} from "../../../types/habit";
-import {habitFilters} from "./habitFilters";
-import {testData} from "../testData";
+import {habitFilters} from "./habitFilters.js";
+import {testData} from "../testData.js";
 
 describe("HabitFilters", () => {
     const {habits:{

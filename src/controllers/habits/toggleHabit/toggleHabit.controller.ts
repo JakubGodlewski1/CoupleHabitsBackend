@@ -1,11 +1,11 @@
 import {Request, Response} from "express";
-import {HabitDbSchema, ToggleHabit} from "../../../../types/habit";
-import {habitDb} from "../../../models/habits/habit.model";
+import {HabitDbSchema, ToggleHabit} from "../../../../types/habit.js";
+import {habitDb} from "../../../models/habits/habit.model.js";
 import {StatusCodes} from "http-status-codes";
-import {getLocalStrikeIncrement} from "../helpers/getLocalStrikeIncrement/getLocalStrikeIncrement";
+import {getLocalStrikeIncrement} from "../helpers/getLocalStrikeIncrement/getLocalStrikeIncrement.js";
 import {
     validateGlobalStrikeAndPoints
-} from "../../../lib/gameAccount/validateGlobalStrikeAndPoints/validateGlobalStrikeAndPoints";
+} from "../../../lib/gameAccount/validateGlobalStrikeAndPoints/validateGlobalStrikeAndPoints.js";
 
 export const toggleHabit = async (req:Request, res:Response)=>{
 

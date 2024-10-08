@@ -1,5 +1,5 @@
 import {Request, Response} from 'express';
-import {uploadImage} from "./s3";
+import {uploadImage} from "./s3.js";
 import {StatusCodes} from "http-status-codes";
 
 export const uploadAvatar =async (req:Request, res:Response) =>{

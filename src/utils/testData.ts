@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import {HabitDbSchema} from "../../types/habit";
+import {HabitDbSchema} from "../../types/habit.js";
 
 const base = {
     _id: new mongoose.Types.ObjectId(),

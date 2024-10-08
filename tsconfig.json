@@ -3,13 +3,14 @@
     "types":["vitest/globals"],
     "module": "NodeNext",
     "target": "ES2022",
-    "moduleResolution": "node",
+    "moduleResolution": "NodeNext",
     "baseUrl": "src",
-    "outDir": "dist",
+    "outDir": "./dist",
+    "rootDir":"./src",
     "sourceMap": true,
     "noImplicitAny": true,
     "esModuleInterop": true,
-    "lib": ["esnext"],
+    "lib": ["esnext", "dom"],
     "strict": true
 
   },

@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
-import { UserDbSchema } from "../../../types/user";
-import { generateConnectionCode } from "../../lib/users/generateConnectionCode/generateConnectionCode";
+import { UserDbSchema } from "../../../types/user.js";
+import { generateConnectionCode } from "../../lib/users/generateConnectionCode/generateConnectionCode.js";
 
 const userSchema = new mongoose.Schema<UserDbSchema>({
     id: {

@@ -1,11 +1,11 @@
-import {HabitDbSchema, HabitDbSchemaCreate} from "../../../../../../types/habit";
-import {habitDb} from "../../../../../models/habits/habit.model";
-import {habitFilters} from "../../../../../utils/habitFilters/habitFilters";
-import {gameAccountDb} from "../../../../../models/gameAccounts/gameAccount.model";
-import {UserDbSchema} from "../../../../../../types/user";
-import {getDayBasedOnUtcOffset} from "../../../../../utils/getDayBasedOnUtcOffset/getDayBasedOnUtcOffset";
-import {GameAccountDbSchema} from "../../../../../../types/gameAccount";
-import {manageGlobalStrike} from "../../../../../lib/gameAccount/manageGlobalStrike/manageGlobalStrike";
+import {HabitDbSchema, HabitDbSchemaCreate} from "../../../../../../types/habit.js";
+import {habitDb} from "../../../../../models/habits/habit.model.js";
+import {gameAccountDb} from "../../../../../models/gameAccounts/gameAccount.model.js";
+import {UserDbSchema} from "../../../../../../types/user.js";
+import {GameAccountDbSchema} from "../../../../../../types/gameAccount.js";
+import {manageGlobalStrike} from "../../../../../lib/gameAccount/manageGlobalStrike/manageGlobalStrike.js";
+import {getDayBasedOnUtcOffset} from "../../../../../utils/getDayBasedOnUtcOffset/getDayBasedOnUtcOffset.js";
+import {habitFilters} from "../../../../../utils/habitFilters/habitFilters.js";
 
 export const validateGlobalStrikeWhileAdding = async (habit:HabitDbSchemaCreate, user: UserDbSchema) => {
     const {scheduledFor, validators:{areAllCompleted}} = habitFilters;

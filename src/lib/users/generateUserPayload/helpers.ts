@@ -1,12 +1,12 @@
-import {userDb} from "../../../models/users/user.model";
-import {UserDbSchema} from "../../../../types/user";
-import {habitDb} from "../../../models/habits/habit.model";
-import {HabitDbSchema} from "../../../../types/habit";
-import {habitConverter} from "../../habits/habitConverter";
-import {gameAccountDb} from "../../../models/gameAccounts/gameAccount.model";
+import {userDb} from "../../../models/users/user.model.js";
+import {UserDbSchema} from "../../../../types/user.js";
+import {habitDb} from "../../../models/habits/habit.model.js";
+import {HabitDbSchema} from "../../../../types/habit.js";
+import {habitConverter} from "../../habits/habitConverter.js";
+import {gameAccountDb} from "../../../models/gameAccounts/gameAccount.model.js";
 import mongoose from "mongoose";
-import {GameAccountDbSchema} from "../../../../types/gameAccount";
-import {InternalError} from "../../../errors/customErrors";
+import {GameAccountDbSchema} from "../../../../types/gameAccount.js";
+import {InternalError} from "../../../errors/customErrors.js";
 
 export const getPartnerAvatar = async (partnerId:string | null):Promise<null | string> => {
     if (!partnerId) return null

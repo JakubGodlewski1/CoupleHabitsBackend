@@ -1,7 +1,7 @@
 import {NextFunction, Request, Response} from "express";
-import {BadRequestError} from "../../../errors/customErrors";
-import {userDb} from "../../../models/users/user.model";
-import {UserDbSchema} from "../../../../types/user";
+import {BadRequestError} from "../../../errors/customErrors.js";
+import {userDb} from "../../../models/users/user.model.js";
+import {UserDbSchema} from "../../../../types/user.js";
 
 export const hasPartner = async (req:Request, res:Response, next:NextFunction) => {
     //get User id

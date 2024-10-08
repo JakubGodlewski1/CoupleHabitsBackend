@@ -1,9 +1,9 @@
 import {DeleteObjectCommand, PutObjectCommand, S3Client} from "@aws-sdk/client-s3";
 import {Request} from "express";
 import sharp from "sharp";
-import {loadDotEnv} from "../../../lib/server/loadDotEnv";
-import {userDb} from "../../../models/users/user.model";
-import {UserDbSchema} from "../../../../types/user";
+import {loadDotEnv} from "../../../lib/server/loadDotEnv.js";
+import {userDb} from "../../../models/users/user.model.js";
+import {UserDbSchema} from "../../../../types/user.js";
 
 loadDotEnv()
 

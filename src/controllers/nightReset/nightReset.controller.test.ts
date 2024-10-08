@@ -1,10 +1,10 @@
 import {beforeEach, describe, expect} from "vitest";
-import {getMidnightOffsets, nightReset} from "./nightReset.controller";
-import {habitDb} from "../../models/habits/habit.model";
-import {userDb} from "../../models/users/user.model";
-import {gameAccountDb} from "../../models/gameAccounts/gameAccount.model";
-import {withTransaction} from "../../lib/mongo/withTransaction";
-import {testData} from "../../utils/testData";
+import {getMidnightOffsets, nightReset} from "./nightReset.controller.js";
+import {habitDb} from "../../models/habits/habit.model.js";
+import {userDb} from "../../models/users/user.model.js";
+import {gameAccountDb} from "../../models/gameAccounts/gameAccount.model.js";
+import {withTransaction} from "../../lib/mongo/withTransaction.js";
+import {testData} from "../../utils/testData.js";
 import mongoose from "mongoose";
 import {Request, Response} from "express";
 
@@ -21,12 +21,11 @@ describe("NightResetController", () => {
     } as unknown as Response;
 
     const {habits:{
-        daily:{dailyCompleted, dailyUncompleted, dailyUncompletedByPartner, dailyUncompletedByUser},
+        daily:{dailyCompleted, dailyUncompleted},
         weekly:{weeklyCompleted,weeklyUncompleted,weeklyUncompletedByUser,weeklyUncompletedByPartner},
         specificDaysSaturday: {specificDaysSaturdayUncompletedByPartner, specificDaysSaturdayCompleted,
-            specificDaysSaturdayUncompletedByUser, specificDaysSaturdayUncompleted},
-        specificDaysFriAndSun: {specificDaysFriAndSunCompleted, specificDaysFriAndSunUncompleted,
-            specificDaysFriAndSunUncompletedByUser, specificDaysFriAndSunUncompletedByPartner}
+            specificDaysSaturdayUncompletedByUser},
+        specificDaysFriAndSun: {specificDaysFriAndSunCompleted, specificDaysFriAndSunUncompleted}
     }} =  testData
 
     const gameAccountId = new mongoose.Types.ObjectId()

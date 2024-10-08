@@ -1,6 +1,6 @@
 import {beforeEach, describe, expect} from "vitest";
 import {NextFunction, Request, Response} from "express";
-import {validateToggleHabitBody} from "./toggleHabit.middleware";
+import {validateToggleHabitBody} from "./toggleHabit.middleware.js";
 
 describe("validateToggleHabitBody", () => {
     let res = {} as Response

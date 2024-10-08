@@ -1,4 +1,4 @@
-import {UserDbSchema} from "../../../../types/user";
+import {UserDbSchema} from "../../../../types/user.js";
 
 export const getUniqueUsers = (users:UserDbSchema[])=>{
     const temporaryGameAccountIds:any = []

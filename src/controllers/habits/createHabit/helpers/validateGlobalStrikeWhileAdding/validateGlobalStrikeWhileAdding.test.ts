@@ -1,11 +1,11 @@
 import {beforeEach, describe, expect, it, vi} from "vitest";
-import {HabitDbSchema} from "../../../../../../types/habit";
-import {gameAccountDb} from "../../../../../models/gameAccounts/gameAccount.model";
-import {testData} from "../../../../../utils/testData";
-import {validateGlobalStrikeWhileAdding} from "./validateGlobalStrikeWhileAdding";
-import {habitDb} from "../../../../../models/habits/habit.model";
-import {manageGlobalStrike} from "../../../../../lib/gameAccount/manageGlobalStrike/manageGlobalStrike";
-import {UserDbSchema} from "../../../../../../types/user";
+import {HabitDbSchema} from "../../../../../../types/habit.js";
+import {gameAccountDb} from "../../../../../models/gameAccounts/gameAccount.model.js";
+import {testData} from "../../../../../utils/testData.js";
+import {validateGlobalStrikeWhileAdding} from "./validateGlobalStrikeWhileAdding.js";
+import {habitDb} from "../../../../../models/habits/habit.model.js";
+import {manageGlobalStrike} from "../../../../../lib/gameAccount/manageGlobalStrike/manageGlobalStrike.js";
+import {UserDbSchema} from "../../../../../../types/user.js";
 
 
 vi.mock("../../../../../models/gameAccounts/gameAccount.model")
@@ -43,7 +43,7 @@ describe('validateGlobalStrikeWhileAdding', () => {
 
     const {
         habits:{
-            daily:{dailyCompleted, dailyUncompleted},
+            daily:{dailyCompleted},
             weekly:{weeklyCompleted, weeklyUncompleted},
             specificDaysFriAndSun:{specificDaysFriAndSunCompleted}
         }

@@ -1,6 +1,6 @@
-import {HabitDbSchema} from "../../../../../types/habit";
-import {habitDb} from "../../../../models/habits/habit.model";
-import {UserDbSchema} from "../../../../../types/user";
+import {HabitDbSchema} from "../../../../../types/habit.js";
+import {habitDb} from "../../../../models/habits/habit.model.js";
+import {UserDbSchema} from "../../../../../types/user.js";
 
 export const getLocalStrikeIncrement = async (habitId:string, user:UserDbSchema, isCompleted:boolean) => {
     //manage habit's task

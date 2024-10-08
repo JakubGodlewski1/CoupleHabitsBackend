@@ -1,6 +1,6 @@
 import {beforeEach, describe, expect, it} from "vitest";
 import {NextFunction, Request, Response} from "express";
-import {hasConnectionCodeAndUtcOffset} from "./hasConnectionCodeAndUtcOffset.middleware";
+import {hasConnectionCodeAndUtcOffset} from "./hasConnectionCodeAndUtcOffset.middleware.js";
 
 describe("hasConnectionCodeAndUtcOffset", () => {
     const user = {

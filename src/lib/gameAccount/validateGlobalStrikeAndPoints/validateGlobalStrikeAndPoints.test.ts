@@ -1,11 +1,11 @@
 import {beforeEach, describe, expect} from "vitest";
-import {manageGlobalStrike} from "../manageGlobalStrike/manageGlobalStrike";
-import {habitDb} from "../../../models/habits/habit.model";
-import {gameAccountDb} from "../../../models/gameAccounts/gameAccount.model";
-import {validateGlobalStrikeAndPoints} from "./validateGlobalStrikeAndPoints";
-import {UserDbSchema} from "../../../../types/user";
-import {testData} from "../../../utils/testData";
-import {HabitDbSchema} from "../../../../types/habit";
+import {manageGlobalStrike} from "../manageGlobalStrike/manageGlobalStrike.js";
+import {habitDb} from "../../../models/habits/habit.model.js";
+import {gameAccountDb} from "../../../models/gameAccounts/gameAccount.model.js";
+import {validateGlobalStrikeAndPoints} from "./validateGlobalStrikeAndPoints.js";
+import {UserDbSchema} from "../../../../types/user.js";
+import {testData} from "../../../utils/testData.js";
+import {HabitDbSchema} from "../../../../types/habit.js";
 
 vi.mock("../manageGlobalStrike/manageGlobalStrike")
 vi.mock("../../../models/habits/habit.model")

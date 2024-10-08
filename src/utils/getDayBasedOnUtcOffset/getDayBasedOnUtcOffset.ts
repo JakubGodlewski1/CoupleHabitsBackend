@@ -1,5 +1,5 @@
 import {addHours} from "date-fns";
-import {MOCK_DATE} from "../../middleware/habits/setMockDateForTests";
+import {MOCK_DATE} from "../../middleware/habits/setMockDateForTests.js";
 
 export const getDayBasedOnUtcOffset = (utcOffset: number): {day:number, hour: number} => {
         if (utcOffset > 14 || utcOffset < -12){

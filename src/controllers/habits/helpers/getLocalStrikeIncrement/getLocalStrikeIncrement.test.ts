@@ -1,9 +1,9 @@
 import {describe} from "vitest";
-import {habitDb} from "../../../../models/habits/habit.model";
-import {UserDbSchema} from "../../../../../types/user";
-import {HabitDbSchema} from "../../../../../types/habit";
+import {habitDb} from "../../../../models/habits/habit.model.js";
+import {UserDbSchema} from "../../../../../types/user.js";
+import {HabitDbSchema} from "../../../../../types/habit.js";
 import mongoose from "mongoose";
-import {getLocalStrikeIncrement} from "./getLocalStrikeIncrement";
+import {getLocalStrikeIncrement} from "./getLocalStrikeIncrement.js";
 
 vi.mock("../../../../models/habits/habit.model")
 

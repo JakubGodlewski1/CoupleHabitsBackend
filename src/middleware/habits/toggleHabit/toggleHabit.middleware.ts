@@ -1,6 +1,6 @@
 import {NextFunction, Request, Response} from "express";
-import {toggleHabitValidator} from "../../../validators/habit.validator";
-import {BadRequestError} from "../../../errors/customErrors";
+import {toggleHabitValidator} from "../../../validators/habit.validator.js";
+import {BadRequestError} from "../../../errors/customErrors.js";
 
 export const validateToggleHabitBody = (req:Request, res:Response, next:NextFunction) => {
 

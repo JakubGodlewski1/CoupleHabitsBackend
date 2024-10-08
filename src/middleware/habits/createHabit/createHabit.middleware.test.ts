@@ -1,5 +1,5 @@
 import {describe, expect} from "vitest";
-import {validateCreateHabitBody} from "./createHabit.middleware";
+import {validateCreateHabitBody} from "./createHabit.middleware.js";
 import {Request, Response} from "express";
 
 describe("validateCreateHabitBody", ()=>{

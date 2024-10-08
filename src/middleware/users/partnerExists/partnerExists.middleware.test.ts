@@ -1,7 +1,7 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { userDb } from '../../../models/users/user.model'; // Adjust path accordingly
-import { BadRequestError } from '../../../errors/customErrors';
-import {partnerExists} from "./partnerExists.middleware";
+import { userDb } from '../../../models/users/user.model.js';
+import { BadRequestError } from '../../../errors/customErrors.js';
+import {partnerExists} from "./partnerExists.middleware.js";
 
 vi.mock('../../../models/users/user.model');
 

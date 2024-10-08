@@ -1,6 +1,6 @@
 import {describe, expect} from "vitest";
-import {UserDbSchema} from "../../../../types/user";
-import {getUniqueUsers} from "./helpers";
+import {UserDbSchema} from "../../../../types/user.js";
+import {getUniqueUsers} from "./helpers.js";
 
 const userBase = {
     updatedAt: new Date(),

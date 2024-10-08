@@ -1,9 +1,9 @@
 import {Request, Response} from "express";
-import {UserDbSchema} from "../../../types/user";
-import {HabitDbSchema} from "../../../types/habit";
-import {GameAccountDbSchema} from "../../../types/gameAccount";
-import {habitDb} from "../../models/habits/habit.model";
-import {gameAccountDb} from "../../models/gameAccounts/gameAccount.model";
+import {UserDbSchema} from "../../../types/user.js";
+import {HabitDbSchema} from "../../../types/habit.js";
+import {GameAccountDbSchema} from "../../../types/gameAccount.js";
+import {habitDb} from "../../models/habits/habit.model.js";
+import {gameAccountDb} from "../../models/gameAccounts/gameAccount.model.js";
 
 export const dayOff = async (req: Request, res: Response) => {
     //the values have been assigned in the validateDayOff middleware

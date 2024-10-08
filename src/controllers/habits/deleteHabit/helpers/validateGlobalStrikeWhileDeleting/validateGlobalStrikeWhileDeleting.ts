@@ -1,11 +1,11 @@
-import {HabitDbSchema} from "../../../../../../types/habit";
-import {habitDb} from "../../../../../models/habits/habit.model";
-import {habitFilters} from "../../../../../utils/habitFilters/habitFilters";
-import {gameAccountDb} from "../../../../../models/gameAccounts/gameAccount.model";
-import {UserDbSchema} from "../../../../../../types/user";
-import {getDayBasedOnUtcOffset} from "../../../../../utils/getDayBasedOnUtcOffset/getDayBasedOnUtcOffset";
-import {GameAccountDbSchema} from "../../../../../../types/gameAccount";
-import {manageGlobalStrike} from "../../../../../lib/gameAccount/manageGlobalStrike/manageGlobalStrike";
+import {HabitDbSchema} from "../../../../../../types/habit.js";
+import {habitDb} from "../../../../../models/habits/habit.model.js";
+import {habitFilters} from "../../../../../utils/habitFilters/habitFilters.js";
+import {gameAccountDb} from "../../../../../models/gameAccounts/gameAccount.model.js";
+import {UserDbSchema} from "../../../../../../types/user.js";
+import {getDayBasedOnUtcOffset} from "../../../../../utils/getDayBasedOnUtcOffset/getDayBasedOnUtcOffset.js";
+import {GameAccountDbSchema} from "../../../../../../types/gameAccount.js";
+import {manageGlobalStrike} from "../../../../../lib/gameAccount/manageGlobalStrike/manageGlobalStrike.js";
 import mongoose from "mongoose";
 
 export const validateGlobalStrikeWhileRemoving = async (habitId:mongoose.Types.ObjectId, user: UserDbSchema) => {

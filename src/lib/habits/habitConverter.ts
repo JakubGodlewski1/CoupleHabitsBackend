@@ -1,4 +1,4 @@
-import {CreateHabit, FrontendHabit, HabitDbSchema, HabitDbSchemaCreate} from "../../../types/habit";
+import {CreateHabit, FrontendHabit, HabitDbSchema, HabitDbSchemaCreate} from "../../../types/habit.js";
 
 export const habitConverter = {
 

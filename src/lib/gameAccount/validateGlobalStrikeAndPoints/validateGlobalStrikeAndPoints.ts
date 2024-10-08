@@ -1,11 +1,11 @@
-import {habitDb} from "../../../models/habits/habit.model";
-import {gameAccountDb} from "../../../models/gameAccounts/gameAccount.model";
-import {UserDbSchema} from "../../../../types/user";
-import {habitFilters} from "../../../utils/habitFilters/habitFilters";
-import {GameAccountDbSchema} from "../../../../types/gameAccount";
-import {manageGlobalStrike} from "../manageGlobalStrike/manageGlobalStrike";
-import {getDayBasedOnUtcOffset} from "../../../utils/getDayBasedOnUtcOffset/getDayBasedOnUtcOffset";
-import {HabitDbSchema} from "../../../../types/habit";
+import {habitDb} from "../../../models/habits/habit.model.js";
+import {gameAccountDb} from "../../../models/gameAccounts/gameAccount.model.js";
+import {UserDbSchema} from "../../../../types/user.js";
+import {habitFilters} from "../../../utils/habitFilters/habitFilters.js";
+import {GameAccountDbSchema} from "../../../../types/gameAccount.js";
+import {manageGlobalStrike} from "../manageGlobalStrike/manageGlobalStrike.js";
+import {getDayBasedOnUtcOffset} from "../../../utils/getDayBasedOnUtcOffset/getDayBasedOnUtcOffset.js";
+import {HabitDbSchema} from "../../../../types/habit.js";
 import _ from "lodash"
 
 export const validateGlobalStrikeAndPoints = async (user: UserDbSchema, hasCompleted: boolean, {frequency}:HabitDbSchema) => {

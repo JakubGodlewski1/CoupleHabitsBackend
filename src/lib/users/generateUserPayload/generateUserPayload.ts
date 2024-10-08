@@ -1,6 +1,6 @@
-import {UserDbSchema, UserPayload} from "../../../../types/user";
-import {getGameAccount, getHabits, getPartnerAvatar} from "./helpers";
-import {FrontendHabit} from "../../../../types/habit";
+import {UserDbSchema, UserPayload} from "../../../../types/user.js";
+import {getGameAccount, getHabits, getPartnerAvatar} from "./helpers.js";
+import {FrontendHabit} from "../../../../types/habit.js";
 
 export const generateUserPayload = async (user: UserDbSchema):Promise<UserPayload> => {
     //get all the necessary data that is needed for the user, like habits, game account details etc.

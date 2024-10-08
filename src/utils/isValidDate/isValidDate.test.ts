@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import {isValidDate} from "./isValidDate";
+import {isValidDate} from "./isValidDate.js";
 
 describe('isValidDate', () => {
     it('should return true for a valid date string with parentheses', () => {

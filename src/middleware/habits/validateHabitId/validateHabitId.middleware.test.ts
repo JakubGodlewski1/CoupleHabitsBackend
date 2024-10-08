@@ -1,8 +1,8 @@
 import {beforeEach, describe, expect} from "vitest";
 import {NextFunction, Request, Response} from "express";
-import {validateHabitId} from "./validateHabitId.middleware";
-import {habitDb} from "../../../models/habits/habit.model";
-import {HabitDbSchema} from "../../../../types/habit";
+import {validateHabitId} from "./validateHabitId.middleware.js";
+import {habitDb} from "../../../models/habits/habit.model.js";
+import {HabitDbSchema} from "../../../../types/habit.js";
 
 vi.mock("../../../models/habits/habit.model")
 

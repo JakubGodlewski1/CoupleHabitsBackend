@@ -1,4 +1,4 @@
-import {HabitDbSchema, HabitDbSchemaCreate, SpecificDays} from "../../../types/habit";
+import {HabitDbSchema, SpecificDays} from "../../../types/habit.js";
 
 const daysOfTheWeek: { [key: number]: keyof SpecificDays } = {
     0: "sunday",

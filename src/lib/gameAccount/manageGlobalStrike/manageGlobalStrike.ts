@@ -1,5 +1,5 @@
-import {GameAccountDbSchema} from "../../../../types/gameAccount";
-import {gameAccountDb} from "../../../models/gameAccounts/gameAccount.model";
+import {GameAccountDbSchema} from "../../../../types/gameAccount.js";
+import {gameAccountDb} from "../../../models/gameAccounts/gameAccount.model.js";
 import mongoose from "mongoose";
 
 export const manageGlobalStrike =  {

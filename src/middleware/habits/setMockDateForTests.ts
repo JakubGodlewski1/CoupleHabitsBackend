@@ -1,5 +1,5 @@
 import {NextFunction, Request, Response} from "express";
-import {isProduction} from "../../utils/isProduction";
+import {isProduction} from "../../utils/isProduction.js";
 
 export let MOCK_DATE:(undefined | Date) = undefined
 

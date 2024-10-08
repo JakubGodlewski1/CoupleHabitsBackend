@@ -1,8 +1,8 @@
 import {NextFunction, Request, Response} from "express";
-import {BadRequestError} from "../../../errors/customErrors";
+import {BadRequestError} from "../../../errors/customErrors.js";
 import mongoose from "mongoose";
-import {habitDb} from "../../../models/habits/habit.model";
-import {HabitDbSchema} from "../../../../types/habit";
+import {habitDb} from "../../../models/habits/habit.model.js";
+import {HabitDbSchema} from "../../../../types/habit.js";
 
 export const validateHabitId = async (req:Request, res:Response, next:NextFunction) => {
     const habitId = req.params.id;

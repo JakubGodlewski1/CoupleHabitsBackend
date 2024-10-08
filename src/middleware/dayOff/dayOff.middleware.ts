@@ -1,10 +1,10 @@
 import {NextFunction, Request, Response} from "express";
-import {gameAccountDb} from "../../models/gameAccounts/gameAccount.model";
-import {GameAccountDbSchema} from "../../../types/gameAccount";
-import {BadRequestError} from "../../errors/customErrors";
-import {habitDb} from "../../models/habits/habit.model";
-import {habitFilters} from "../../utils/habitFilters/habitFilters";
-import {getDayBasedOnUtcOffset} from "../../utils/getDayBasedOnUtcOffset/getDayBasedOnUtcOffset";
+import {gameAccountDb} from "../../models/gameAccounts/gameAccount.model.js";
+import {GameAccountDbSchema} from "../../../types/gameAccount.js";
+import {BadRequestError} from "../../errors/customErrors.js";
+import {habitDb} from "../../models/habits/habit.model.js";
+import {habitFilters} from "../../utils/habitFilters/habitFilters.js";
+import {getDayBasedOnUtcOffset} from "../../utils/getDayBasedOnUtcOffset/getDayBasedOnUtcOffset.js";
 
 export const validateDayOff = async (req:Request, res:Response, next:NextFunction) => {
     const {user} = res.locals

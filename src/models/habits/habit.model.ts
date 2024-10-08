@@ -1,6 +1,6 @@
 import mongoose, { Schema} from "mongoose";
-import {frequencyValidator} from "../../validators/habit.validator";
-import {HabitDbSchema} from "../../../types/habit";
+import {frequencyValidator} from "../../validators/habit.validator.js";
+import {HabitDbSchema} from "../../../types/habit.js";
 
 // Define the subdocument schema for details
 const DetailSchema = new Schema({

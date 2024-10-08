@@ -1,12 +1,12 @@
 import {Router} from 'express';
-import {getUser} from "../../../controllers/users/getUser/getUser.controller";
-import {connectWithPartnerController} from "../../../controllers/users/connectWithPartner/connectWithPartner.controller";
-import {hasNoPartner} from "../../../middleware/users/hasNoPartner/hasNoPartner.middleware";
-import {hasConnectionCodeAndUtcOffset} from "../../../middleware/users/hasConnectionCodeAndUtcOffset/hasConnectionCodeAndUtcOffset.middleware";
-import {partnerExists} from "../../../middleware/users/partnerExists/partnerExists.middleware";
+import {getUser} from "../../../controllers/users/getUser/getUser.controller.js";
+import {connectWithPartnerController} from "../../../controllers/users/connectWithPartner/connectWithPartner.controller.js";
+import {hasNoPartner} from "../../../middleware/users/hasNoPartner/hasNoPartner.middleware.js";
+import {hasConnectionCodeAndUtcOffset} from "../../../middleware/users/hasConnectionCodeAndUtcOffset/hasConnectionCodeAndUtcOffset.middleware.js";
+import {partnerExists} from "../../../middleware/users/partnerExists/partnerExists.middleware.js";
 import multer from "multer"
-import {uploadAvatar} from "../../../controllers/users/uploadAvatar/uploadAvatar.controller";
-import {validateAvatarFile} from "../../../middleware/users/validateAvatar/validateAvatar.middleware";
+import {uploadAvatar} from "../../../controllers/users/uploadAvatar/uploadAvatar.controller.js";
+import {validateAvatarFile} from "../../../middleware/users/validateAvatar/validateAvatar.middleware.js";
 const storage = multer.memoryStorage()
 const upload = multer({storage: storage})
 export const userRouter = Router()
