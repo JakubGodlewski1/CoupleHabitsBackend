@@ -1,0 +1,10 @@
+services:
+  backend:
+    platform: linux/amd64
+    ports:
+      - "3004:3000"
+    build: .
+    image: "couple-habits-api"
+    env_file:
+      - .env.development
+    restart: unless-stopped
